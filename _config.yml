@@ -110,6 +110,7 @@ deploy:
   message: update
   repo: root@www.triority.cc:/root/blog_public.git
   branch: master
+  token: 12365478
   
 spoiler:
   style: box
