@@ -41,7 +41,7 @@ jobs:
           hexo g
           echo "build blog successful"
       - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.5.3
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.PRIVATE_KEY }}
       - name: Deploy
