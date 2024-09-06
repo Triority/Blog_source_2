@@ -107,11 +107,10 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/Triority/triority.github.io.git
-  branch: gh-pages
+  message: update
+  repo: root@www.triority.cc:/root/blog_public.git
+  branch: master
   
-
-
 spoiler:
   style: box
   color: black

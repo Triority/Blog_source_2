@@ -1,3 +1,4 @@
 .vscode/*
 public/*
 .user.ini
+.deploy_git
