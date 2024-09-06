@@ -18,6 +18,7 @@ description: 博客帮助文件
 + `git clone`下载github仓库源代码到本地
 + 编辑文件内容或使用`hexo new [name]`新建一个web链接为name的文章，新建的文章保存为`/hexo/source/[year]/[name].md`，即可在其中使用markdown语言编写文章
 + 提交你的更改并同步到github仓库
++ github action自动进行网站内容的生成和部署，等待三五分钟左右即可打开网站查看更改。如果`build`出现报错请直接重试，仍然报错基本上markdown语法错误，请再次检查你的更改
 
 # 文章配置
 ```md
