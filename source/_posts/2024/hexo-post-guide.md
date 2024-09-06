@@ -10,15 +10,14 @@ date: 2024-07-22 18:33:41
 description: 博客帮助文件
 ---
 # 概述
-博客采用静态hexo框架，基于node js，文章使用markdown语言进行编写。源文件保存于香港的服务器，使用git进行源码管理同时在github仓库和nas备份。使用nginx提供对外服务。
+博客采用静态hexo框架，基于node js，文章使用markdown语言进行编写。源文件保存于github仓库，使用git进行源码管理，使用github action自动化部署到远程服务器，并使用nginx提供对外服务。
 # 编辑权限
-博客编辑需要登陆服务器，ssh仅支持密钥登录凭据，如果你希望在博客发布信息请联系我获得服务器密钥
-# 新建和编辑文章
-+ 使用ssh登入服务器后，进入`/hexo`目录。
-+ 打开终端，输入`hexo new [name]`即可新建一个web链接为name的文章。请务必设置name为英文字母数字和减号，不要包含中文字符等内容
-+ 文章按年份分类，新建的文章保存为`/hexo/source/[year]/[name].md`，即可在其中使用markdown语言编写文章
+可以私信我或发邮件申请仓库编辑权限，或者直接在github仓库发起合并请求
 
-推荐使用[vscode remote ssh](https://github.com/Microsoft/vscode-remote-release)进行博客编写
+# 新建和编辑文章
++ `git clone`下载github仓库源代码到本地
++ 编辑文件内容或使用`hexo new [name]`新建一个web链接为name的文章，新建的文章保存为`/hexo/source/[year]/[name].md`，即可在其中使用markdown语言编写文章
++ 提交你的更改并同步到github仓库
 
 # 文章配置
 ```md
