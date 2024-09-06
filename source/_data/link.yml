@@ -1,0 +1,15 @@
+- class_name: 网站
+  class_desc: 值得推荐的网站
+  link_list:
+    - name: 雨月空间/Mintimate's Blog
+      link: https://www.mintimate.cn
+      avatar: https://mintimate.cn/custom/img/favicon/favicon.png
+      descr: 专注与你分享技术教程～
+    - name: 你是一个一个一个博客啊啊啊啊
+      link: https://qwqpap.com
+      avatar: https://qwqpap.com/wp-content/uploads/2022/12/cropped-illust_81099592_20220908_100803-1.jpg
+      descr: 某神秘学弟的博客
+    - name: mrliu1024
+      link: https://blog.mrliu1024.top/
+      avatar: https://blog.mrliu1024.top
+      descr: BI1PTK友台
