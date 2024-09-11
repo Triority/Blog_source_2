@@ -106,10 +106,11 @@ theme: butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  message: update
-  repo: root@www.triority.cc:/root/blog_public.git
-  branch: master
+  type: rsync
+  host: www.triority.cc
+  user: root
+  root: /blog_public
+  key: ${{ secrets.PRIVATE_KEY }}
   
 spoiler:
   style: box
