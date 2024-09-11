@@ -41,6 +41,16 @@ jobs:
           hexo g
           echo "build blog successful"
       - name: Deploy # 设置 git 信息并推送静态博客文件
-        run: |
-          hexo d
+        uses: easingthemes/ssh-deploy@v2.1.1
+        env:
+          # 私钥id_rsa，存在secrets的PRIVATE_KEY中
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          # 复制操作参数，"-avzr --delete"部署时清空服务器目标目录下的文件
+          ARGS: "-avzr --delete" 
+          # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
+          SOURCE: "public/"
+          REMOTE_HOST: "www.triority.cc"
+          REMOTE_USER: "root"
+          # 目标目录
+          TARGET: "/blog_public"
       - run: echo "Deploy Successful!"
