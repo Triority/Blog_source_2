@@ -12,7 +12,7 @@ date: 2024-07-02 21:37:22
 description: 高功率高压高速直线电机
 ---
 # 概述
-这个项目是我大学本科四年做的最复杂的一个，从大一下学期到大三结束一路磕磕绊绊走走停停终于到了可以写总结的时候。
+这个项目是我大学本科四年做的最复杂的一个，从大一下学期到大三结束一路磕磕绊绊走走停停终于到了可以写总结的时候，现在这个仅剩下一点无关紧要的收尾工作了。
 
 {% note danger modern %}
 警告：本文设计内容具有危险性，不提供任何制造文件资料，仅供科研交流使用，装置测试后已经拆除，严禁仿造用于其他用途。
@@ -23,6 +23,15 @@ description: 高功率高压高速直线电机
 + 快速连续工作(<1s)
 + 速度快(>100m/s)
 + 效率有追求但不很重要(>10%)
+
+# Maxwell电磁力运动仿真
+之前写的教程比较简略（晦涩难懂），步骤太多文字写起来很麻烦，直接录下来操作视频发b站了
+
+视频中演示的结构为高压方案的单路boost拓扑，位置触发的时序控制，外电路激励源
+{% raw %}
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113007065564118&bvid=BV168WEeBEmV&cid=500001658823200&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>
+{% endraw %}
 
 # 4 LEVELS
 ## 基本参数
