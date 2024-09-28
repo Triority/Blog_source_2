@@ -236,7 +236,7 @@ aside:
       link: https://github.com/Triority
   card_announcement:
     enable: true
-    content: The domain name of this website has been changed to triority.cc. Please contact me if you have any questions. 
+    content: The domain name of this website has been changed to triority.cc(Using CDN via cloudflare, recommended) / www.triority.cc(Connecting directly, works better in Chinese mainland). Please contact me if you have any questions. 
   card_recent_post:
     enable: false
     limit: 5 # if set 0 will show all

@@ -12,7 +12,7 @@ date: 2024-07-02 21:37:22
 description: 高功率高压高速直线电机
 ---
 # 概述
-这个项目是我大学本科四年做的最复杂的一个，从大一下学期到大三结束一路磕磕绊绊走走停停终于到了可以写总结的时候。
+这个项目是我大学本科四年做的最复杂的一个，从大一下学期到大三结束一路磕磕绊绊走走停停终于到了可以写总结的时候，现在这个仅剩下一点无关紧要的收尾工作了。
 
 {% note danger modern %}
 警告：本文设计内容具有危险性，不提供任何制造文件资料，仅供科研交流使用，装置测试后已经拆除，严禁仿造用于其他用途。
@@ -23,6 +23,15 @@ description: 高功率高压高速直线电机
 + 快速连续工作(<1s)
 + 速度快(>100m/s)
 + 效率有追求但不很重要(>10%)
+
+# Maxwell电磁力运动仿真
+之前写的教程比较简略（晦涩难懂），步骤太多文字写起来很麻烦，直接录下来操作视频发b站了
+
+视频中演示的结构为高压方案的单路boost拓扑，位置触发的时序控制，外电路激励源
+{% raw %}
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113007065564118&bvid=BV168WEeBEmV&cid=500001658823200&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>
+{% endraw %}
 
 # 4 LEVELS
 ## 基本参数
@@ -269,7 +278,305 @@ void loop() {
 ## 时序控制
 ### 控制程序
 考虑到esp32引脚数量不足，主控芯片更换为stm32。以及这次可以进行电压测量和充电电流监控并主动控制，加入了这部分控制代码
+
+<details>
+  <summary>一些吐槽</summary>
+  这段代码实在是太不优雅了，真受不了这一堆if else，但是又一直懒得重构。。。至少暂时不耽误用。以及现在电压主动控制还没写，等写完了就删掉这句话
+</details>
+
 ```c
+//cxx: control[just a str], level, 0:duration/1:start time//2:end time
+
+// start time
+int c11_time = 0;
+int c21_time = 1350;
+int c31_time = 2000;
+int c41_time = 2630;
+int c51_time = 3100;
+int c61_time = 3490;
+int c71_time = 3830;
+int c81_time = 4140;
+int c91_time = 4410;
+// duration
+int c10_time = 1340;
+int c20_time = 880;
+int c30_time = 770;
+int c40_time = 590;
+int c50_time = 500;
+int c60_time = 470;
+int c70_time = 400;
+int c80_time = 360;
+int c90_time = 340;
+// trigger status
+const int c1 = 13;
+const int c2 = 12;
+const int c3 = 14;
+const int c4 = 27;
+const int c5 = 26;
+const int c6 = 25;
+const int c7 = 33;
+const int c8 = 32;
+const int c9 = 23;
+const int sw = 0;
+int serial_sw = 0;
+
+unsigned long pulseStartTime = 0;
+unsigned long pulseNowTime = 0;
+
+String inData="";
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(c1, OUTPUT);
+  pinMode(c2, OUTPUT);
+  pinMode(c3, OUTPUT);
+  pinMode(c4, OUTPUT);
+  pinMode(c5, OUTPUT);
+  pinMode(c6, OUTPUT);
+  pinMode(c7, OUTPUT);
+  pinMode(c8, OUTPUT);
+  pinMode(c9, OUTPUT);
+  digitalWrite(c1, LOW);
+  digitalWrite(c2, LOW);
+  digitalWrite(c3, LOW);
+  digitalWrite(c4, LOW);
+  digitalWrite(c5, LOW);
+  digitalWrite(c6, LOW);
+  digitalWrite(c7, LOW);
+  digitalWrite(c8, LOW);
+  digitalWrite(c9, LOW);
+
+  pinMode(sw, INPUT);
+}
+
+void loop() {
+  // serial
+  while(Serial.available()>0){
+    delay(5);
+    char recieved = Serial.read();
+    inData += recieved;
+    if(recieved == '\n'){
+      if (inData.length()<4){
+        Serial.println("Too short");
+        break;
+      }
+      String function = inData.substring(0, 4);
+      if (function=="shot"){
+        serial_sw = 1;
+        Serial.println("Shot after 1 second!");
+        delay(1000);
+      }
+
+      if (function=="c11 "){
+        String value_str = inData.substring(4, inData.length());
+        c11_time = value_str.toInt();
+        Serial.printf("Now c11 = ");
+        Serial.println(c11_time);
+      }else if (function=="c10 "){
+        String value_str = inData.substring(4, inData.length());
+        c10_time = value_str.toInt();
+        Serial.printf("Now c10 = ");
+        Serial.println(c10_time);
+      }else if (function=="c21 "){
+        String value_str = inData.substring(4, inData.length());
+        c21_time = value_str.toInt();
+        Serial.printf("Now c21 = ");
+        Serial.println(c21_time);
+      }else if (function=="c20 "){
+        String value_str = inData.substring(4, inData.length());
+        c20_time = value_str.toInt();
+        Serial.printf("Now c20 = ");
+        Serial.println(c20_time);
+      }else if (function=="c31 "){
+        String value_str = inData.substring(4, inData.length());
+        c31_time = value_str.toInt();
+        Serial.printf("Now c31 = ");
+        Serial.println(c31_time);
+      }else if (function=="c30 "){
+        String value_str = inData.substring(4, inData.length());
+        c30_time = value_str.toInt();
+        Serial.printf("Now c30 = ");
+        Serial.println(c30_time);
+      }else if (function=="c41 "){
+        String value_str = inData.substring(4, inData.length());
+        c41_time = value_str.toInt();
+        Serial.printf("Now c41 = ");
+        Serial.println(c41_time);
+      }else if (function=="c40 "){
+        String value_str = inData.substring(4, inData.length());
+        c40_time = value_str.toInt();
+        Serial.printf("Now c40 = ");
+        Serial.println(c40_time);
+      }else if (function=="c51 "){
+        String value_str = inData.substring(4, inData.length());
+        c51_time = value_str.toInt();
+        Serial.printf("Now c51 = ");
+        Serial.println(c51_time);
+      }else if (function=="c50 "){
+        String value_str = inData.substring(4, inData.length());
+        c50_time = value_str.toInt();
+        Serial.printf("Now c50 = ");
+        Serial.println(c50_time);
+      }else if (function=="c61 "){
+        String value_str = inData.substring(4, inData.length());
+        c61_time = value_str.toInt();
+        Serial.printf("Now c61 = ");
+        Serial.println(c61_time);
+      }else if (function=="c60 "){
+        String value_str = inData.substring(4, inData.length());
+        c60_time = value_str.toInt();
+        Serial.printf("Now c60 = ");
+        Serial.println(c60_time);
+      }else if (function=="c71 "){
+        String value_str = inData.substring(4, inData.length());
+        c71_time = value_str.toInt();
+        Serial.printf("Now c71 = ");
+        Serial.println(c71_time);
+      }else if (function=="c70 "){
+        String value_str = inData.substring(4, inData.length());
+        c70_time = value_str.toInt();
+        Serial.printf("Now c70 = ");
+        Serial.println(c70_time);
+      }else if (function=="c81 "){
+        String value_str = inData.substring(4, inData.length());
+        c81_time = value_str.toInt();
+        Serial.printf("Now c81 = ");
+        Serial.println(c81_time);
+      }else if (function=="c80 "){
+        String value_str = inData.substring(4, inData.length());
+        c80_time = value_str.toInt();
+        Serial.printf("Now c80 = ");
+        Serial.println(c80_time);
+      }else if (function=="c91 "){
+        String value_str = inData.substring(4, inData.length());
+        c91_time = value_str.toInt();
+        Serial.printf("Now c91 = ");
+        Serial.println(c91_time);
+      }else if (function=="c90 "){
+        String value_str = inData.substring(4, inData.length());
+        c90_time = value_str.toInt();
+        Serial.printf("Now c90 = ");
+        Serial.println(c90_time);
+      }
+      inData="";
+    }
+
+  }
+
+  // switch
+  if (digitalRead(sw)==LOW||serial_sw){
+    // reset
+    serial_sw = 0;
+    int c11 = 1;
+    int c21 = 1;
+    int c31 = 1;
+    int c41 = 1;
+    int c51 = 1;
+    int c61 = 1;
+    int c71 = 1;
+    int c81 = 1;
+    int c91 = 1;
+    int c12 = 1;
+    int c22 = 1;
+    int c32 = 1;
+    int c42 = 1;
+    int c52 = 1;
+    int c62 = 1;
+    int c72 = 1;
+    int c82 = 1;
+    int c92 = 1;
+    int c12_time = c11_time + c10_time;
+    int c22_time = c21_time + c20_time;
+    int c32_time = c31_time + c30_time;
+    int c42_time = c41_time + c40_time;
+    int c52_time = c51_time + c50_time;
+    int c62_time = c61_time + c60_time;
+    int c72_time = c71_time + c70_time;
+    int c82_time = c81_time + c80_time;
+    int c92_time = c91_time + c90_time;
+    Serial.println("starting");
+    pulseStartTime = micros();
+    pulseNowTime = micros();
+    while(c11||c12||c21||c22||c31||c32||c41||c42||c51||c52||c61||c62||c71||c72||c81||c82||c91||c92){
+      pulseNowTime = micros();
+      if(pulseNowTime-pulseStartTime>c11_time && c11){
+        digitalWrite(c1, HIGH);
+        c11 = 0;}
+      if(pulseNowTime-pulseStartTime>c12_time && c12){
+        digitalWrite(c1, LOW);
+        c12 = 0;}
+
+      if(pulseNowTime-pulseStartTime>c21_time && c21){
+        digitalWrite(c2, HIGH);
+        c21 = 0;}
+      if(pulseNowTime-pulseStartTime>c22_time && c22){
+        digitalWrite(c2, LOW);
+        c22 = 0;}
+
+      if(pulseNowTime-pulseStartTime>c31_time && c31){
+        digitalWrite(c3, HIGH);
+        c31 = 0;}
+      if(pulseNowTime-pulseStartTime>c32_time && c32){
+        digitalWrite(c3, LOW);
+        c32 = 0;}
+        
+      if(pulseNowTime-pulseStartTime>c41_time && c41){
+        digitalWrite(c4, HIGH);
+        c41 = 0;}
+      if(pulseNowTime-pulseStartTime>c42_time && c42){
+        digitalWrite(c4, LOW);
+        c42 = 0;}
+      
+      if(pulseNowTime-pulseStartTime>c51_time && c51){
+        digitalWrite(c5, HIGH);
+        c51 = 0;}
+      if(pulseNowTime-pulseStartTime>c52_time && c52){
+        digitalWrite(c5, LOW);
+        c52 = 0;}
+      
+      if(pulseNowTime-pulseStartTime>c61_time && c61){
+        digitalWrite(c6, HIGH);
+        c61 = 0;}
+      if(pulseNowTime-pulseStartTime>c72_time && c62){
+        digitalWrite(c6, LOW);
+        c62 = 0;}
+      
+      if(pulseNowTime-pulseStartTime>c71_time && c71){
+        digitalWrite(c7, HIGH);
+        c71 = 0;}
+      if(pulseNowTime-pulseStartTime>c72_time && c72){
+        digitalWrite(c7, LOW);
+        c72 = 0;}
+      
+      if(pulseNowTime-pulseStartTime>c81_time && c81){
+        digitalWrite(c8, HIGH);
+        c81 = 0;}
+      if(pulseNowTime-pulseStartTime>c82_time && c82){
+        digitalWrite(c8, LOW);
+        c82 = 0;}
+
+      if(pulseNowTime-pulseStartTime>c91_time && c91){
+        digitalWrite(c9, HIGH);
+        c91 = 0;}
+      if(pulseNowTime-pulseStartTime>c92_time && c92){
+        digitalWrite(c9, LOW);
+        c92 = 0;}
+
+
+      if(pulseNowTime-pulseStartTime>1000000){
+        Serial.print("ERROR, time out");
+        break;
+      }
+    }
+    // not release
+    //Serial.println("releasing");
+
+    //digitalWrite(c5, HIGH);
+    delay(2000);
+    //digitalWrite(c5, LOW);
+    Serial.println("finished");
+  }
+}
 
 ```
 ### 电磁运动仿真计算

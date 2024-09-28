@@ -53,5 +53,4 @@ jobs:
           REMOTE_USER: "root"
           # 目标目录
           TARGET: "/blog_public"
-
       - run: echo "Deploy Successful!"
