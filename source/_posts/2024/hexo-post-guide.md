@@ -100,7 +100,7 @@ markdown语言语法请自行学习，初期使用不熟练推荐使用开源项
 ```
 
 ### 站内跳转
-虽然可以直接使用markdown超链接直接跳转，但是不建议这样做。因为一旦更改了域名所有文章内的链接都将失效。建议使用`post_link`标签。
+虽然可以直接使用markdown超链接直接跳转，但是不建议这样做。因为一旦更改了域名所有文章内的链接都将失效。建议使用`post_link`标签。[官方文档](https://hexo.io/docs/tag-plugins#Include-Posts)
 
 ```
 {% post_link filename [title] [escape] %}
