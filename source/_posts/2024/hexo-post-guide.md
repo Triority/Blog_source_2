@@ -108,14 +108,14 @@ markdown语言语法请自行学习，初期使用不熟练推荐使用开源项
 
 这样就会跳转到文件名为`filename.md`的文章，并显示标题为`[title]`。
 
-{% post_path CQWWRTTY2024 'RTTY竞赛' %}
+{% post_path `CQWWRTTY2024` 'RTTY竞赛' %}
 
 也可以跳转到某个特定章节：`post_link`标签后加上`#`和章节标题
 ```
-{% post_path CQWWRTTY2024 'RTTY' %}#BI1HT
+{% post_path `CQWWRTTY2024` 'RTTY' %}#BI1HT
 ```
 
-{% post_path CQWWRTTY2024 'RTTY竞赛BI1HT' %}#BI1HT
+{% post_path `CQWWRTTY2024` 'RTTY竞赛BI1HT' %}#BI1HT
 
 ### 文件下载链接
 ```
