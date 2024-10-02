@@ -100,7 +100,7 @@ markdown语言语法请自行学习，初期使用不熟练推荐使用开源项
 ```
 
 ### 站内跳转
-虽然可以直接使用markdown超链接直接跳转，但是不建议这样做。因为一旦更改了域名所有文章内的链接都将失效。建议使用`post_link`标签。默认的路径是在`_post`路径下，如果不是默认路径，需要写上相对路径
+虽然可以直接使用markdown超链接直接跳转，但是不建议这样做。因为一旦更改了域名所有文章内的链接都将失效。建议使用`post_link`标签。
 
 ```
 {% post_link filename [title] [escape] %}
@@ -109,17 +109,17 @@ markdown语言语法请自行学习，初期使用不熟练推荐使用开源项
 这样就会跳转到文件名为`filename.md`的文章，并显示标题为`[title]`。
 
 ```
-{% post_link '2024/CQWWRTTY2024' 'RTTY竞赛' %}
+{% post_link 'CQWWRTTY2024' 'RTTY竞赛' %}
 ```
 
-{% post_link '2024/CQWWRTTY2024' 'RTTY竞赛' %}
+{% post_link 'CQWWRTTY2024' 'RTTY竞赛' %}
 
 也可以跳转到某个特定章节：`post_link`标签后加上`#`和章节标题
 ```
-{% post_link `2024/CQWWRTTY2024` 'RTTY' %}#BI1HT
+{% post_link `CQWWRTTY2024` 'RTTY' %}#BI1HT
 ```
 
-{% post_link '2024/CQWWRTTY2024' 'RTTY竞赛BI1HT' %}#BI1HT
+{% post_link 'CQWWRTTY2024' 'RTTY竞赛BI1HT' %}#BI1HT
 
 ### 文件下载链接
 ```
