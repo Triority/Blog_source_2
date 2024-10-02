@@ -37,7 +37,6 @@
     "hexo-spoiler": "^1.7.3",
     "hexo-tag-aplayer": "^3.0.4",
     "hexo-tag-dplayer": "^0.3.3",
-    "hexo-tag-post-link": "^1.0.6",
     "hexo-theme-landscape": "^0.0.3",
     "hexo-wordcount": "^6.0.1",
     "markdown-it-ruby": "^0.1.1"

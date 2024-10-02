@@ -1460,13 +1460,6 @@ hexo-tag-dplayer@^0.3.3:
     hexo-log "^0.2.0"
     hexo-util "^0.6.2"
 
-hexo-tag-post-link@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.npmjs.org/hexo-tag-post-link/-/hexo-tag-post-link-1.0.6.tgz"
-  integrity sha512-YgumhQBlaiilZA6Rb91CW2Q6I4jmAY1zOUAM5duv4OW3Vt8uv7p9jGJiuxC76DQuVh8UbOkpxJdxBLeVZiOyyA==
-  dependencies:
-    underscore "^1.8.3"
-
 hexo-theme-landscape@^0.0.3:
   version "0.0.3"
   resolved "https://registry.npmjs.org/hexo-theme-landscape/-/hexo-theme-landscape-0.0.3.tgz"
@@ -3108,11 +3101,6 @@ uglify-js@^3.0.27:
   version "3.17.4"
   resolved "https://mirrors.cloud.tencent.com/npm/uglify-js/-/uglify-js-3.17.4.tgz"
   integrity sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==
-
-underscore@^1.8.3:
-  version "1.13.7"
-  resolved "https://registry.npmjs.org/underscore/-/underscore-1.13.7.tgz"
-  integrity sha512-GMXzWtsc57XAtguZgaQViUOzs0KTkk8ojr3/xAxXLITqf/3EMwxC0inyETfDFjH/Krbhuep0HNbbjI9i/q3F3g==
 
 union-value@^1.0.0:
   version "1.0.1"
