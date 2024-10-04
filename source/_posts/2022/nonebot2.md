@@ -187,7 +187,7 @@ async def reply_handle(bot: Bot, event: Event):
                 await reply.finish(words[1]+'并没有权限')
             return
         if words[0] in keys and user in ops:
-            await reply.finish('您输入的语法有误，如有问题请查看机器人说明书：http://triority.cn/2022/06/16/how-to-use-qqbot/')
+            await reply.finish('您输入的语法有误，如有问题请查看机器人说明书：http://triority.cc/2022/06/16/how-to-use-qqbot/')
     except KeyError:
         await reply.finish()
 

@@ -346,6 +346,6 @@ pyinstaller -F -w main.py
 把之前生成的nsi文件推进去，等他编译完，就大功告成咯
 ## 下载链接
 安装程序：
-[CapooSetup.exe](https://cr.triority.cn/f/vZhl/CapooSetup.exe)
+[CapooSetup.exe](https://cr.triority.cc/f/vZhl/CapooSetup.exe)
 python编译exe文件：
-[main.exe](https://cr.triority.cn/f/qYFA/main.exe)
+[main.exe](https://cr.triority.cc/f/qYFA/main.exe)

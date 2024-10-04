@@ -54,7 +54,7 @@ commands = ['记分', '清零', '查询', '复读', 'add', 'del', 'inquire', '12
 
 
 def add_score(target, score):
-    db = pymysql.connect(host='triority.cn',
+    db = pymysql.connect(host='triority.cc',
                          user='triority',
                          password='xxx',
                          database='qqbot')
@@ -90,7 +90,7 @@ def add_score(target, score):
 
 def inquire(target):
     try:
-        db = pymysql.connect(host='triority.cn',
+        db = pymysql.connect(host='triority.cc',
                              user='triority',
                              password='xxx',
                              database='qqbot')
@@ -107,7 +107,7 @@ def inquire(target):
 
 def delete(target):
     try:
-        db = pymysql.connect(host='triority.cn',
+        db = pymysql.connect(host='triority.cc',
                              user='triority',
                              password='xxx',
                              database='qqbot')

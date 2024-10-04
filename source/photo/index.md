@@ -237,10 +237,10 @@ description: 这是一个相册不过也有可能作为朋友圈来发？
 
 
 ## 12.7：重庆出差
-[当时写的原文：《首次出差——重庆》](https://triority.cn/2023/first-business-trip/)
+[当时写的原文：《首次出差——重庆》](https://triority.cc/2023/first-business-trip/)
 
 ## 10.4：内蒙古-天津
-[当时写的原文：《内蒙古-天津自驾游旅行》](https://triority.cn/2023/Inner-Mongolia-DRIVING/)
+[当时写的原文：《内蒙古-天津自驾游旅行》](https://triority.cc/2023/Inner-Mongolia-DRIVING/)
 
 ## 7.3：月
 图一感谢我校天文社团提供的天文望远镜支持（甚至是社长自费筹资购买）
@@ -274,7 +274,7 @@ description: 这是一个相册不过也有可能作为朋友圈来发？
 {% endgallery %}
 
 ## 2.4：重庆
-[当时写的原文：《重庆》](https://triority.cn/2023/spicy/)
+[当时写的原文：《重庆》](https://triority.cc/2023/spicy/)
 
 
 # 2022
@@ -304,7 +304,7 @@ description: 这是一个相册不过也有可能作为朋友圈来发？
 ![本溪市政府广场](/photo/media/IMG_20220616_172100.jpg)
 {% endgallery %}
 ## 6.1:滴水洞
-[滴水洞](http://triority.cn/2022/06/01/dishuidong/)
+[滴水洞](http://triority.cc/2022/06/01/dishuidong/)
 
 {% note danger modern %}
 这段时间消失了！

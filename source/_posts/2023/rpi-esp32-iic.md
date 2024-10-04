@@ -12,7 +12,7 @@ description: 树莓派与esp32通讯来控制电机转速，并据此计算小�
 ---
 # 上下位机通讯
 ## iic
-在[这篇文章](https://triority.cn/2023/esp32-all-in-one/#%E5%BA%94%E7%AD%94%E4%BA%A4%E4%BA%92%E9%80%9A%E8%AE%AF)我已经写过arduino uno和esp32通讯并控制电机速度，但是树莓派并没有封装好的Wire库，或者说我没找到，所以如果使用树莓派作为上位机这段程序需要重写。
+在[这篇文章](https://triority.cc/2023/esp32-all-in-one/#%E5%BA%94%E7%AD%94%E4%BA%A4%E4%BA%92%E9%80%9A%E8%AE%AF)我已经写过arduino uno和esp32通讯并控制电机速度，但是树莓派并没有封装好的Wire库，或者说我没找到，所以如果使用树莓派作为上位机这段程序需要重写。
 
 > 树莓派速度发送程序（还没有进行位置计算）:
 ```

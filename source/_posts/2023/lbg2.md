@@ -15,7 +15,7 @@ description: 手机拍银河！
 ## 直接上图
 ### Shot by my Mi 10S ！
 手机居然也能拍到银河属实是没有想到，当然这都是经过降噪处理的，原raw图简直没法看
-{% dplayer "url=https://cr.triority.cn/f/QeeCl/2023%E5%B9%B43%E6%9C%8825%E6%97%A5%E5%BB%B6%E6%97%B6%E6%91%84%E5%BD%B1%20.mp4" %}
+{% dplayer "url=https://cr.triority.cc/f/QeeCl/2023%E5%B9%B43%E6%9C%8825%E6%97%A5%E5%BB%B6%E6%97%B6%E6%91%84%E5%BD%B1%20.mp4" %}
 
 视频的图片是一分钟拍摄一张，感觉帧率有点低了，下次半分钟一张吧
 
@@ -27,5 +27,5 @@ description: 手机拍银河！
 
 ### 来张自己
 美中不足就是帽子挡住了光线emmm
-![感谢中石大的wbx同学帮忙拍摄！](https://cr.triority.cn/f/3LQSp/DSC03695.png)
+![感谢中石大的wbx同学帮忙拍摄！](https://cr.triority.cc/f/3LQSp/DSC03695.png)
 笑死我这个时候其实穿了三个外套衣服两个外套裤子以及三双袜子，不知道能不能看出来哎

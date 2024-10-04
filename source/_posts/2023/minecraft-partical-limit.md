@@ -21,7 +21,7 @@ Minecraft是闭源的，但是为了编写模组，有了人力反编译的项�
 ### mcp的下载和使用
 [mcp相关信息的wiki](https://minecraft.fandom.com/zh/wiki/%E8%BE%85%E5%8A%A9%E7%A8%8B%E5%BA%8F%E4%B8%8E%E7%BC%96%E8%BE%91%E5%99%A8/Mod_Coder_Pack#%E9%93%BE%E6%8E%A5)
 
-[1.12.2修改过的mcp下载](https://cr.triority.cn/f/VETK/mc-1.12.2-source_files-master.zip)
+[1.12.2修改过的mcp下载](https://cr.triority.cc/f/VETK/mc-1.12.2-source_files-master.zip)
 
 至于使用方法，文件里面有`docs`文件夹，里面是文档。需要注意java版本，比如mc的1.12.2需要使用java8，最开始因为是17的环境所以失败。
 

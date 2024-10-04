@@ -12,7 +12,7 @@ categories:
 ---
 ## 如何启动MC
 ### java
-首先,你需要安装Java.可以先安装[Java8](https://cr.triority.cn/f/opua/java8.exe)
+首先,你需要安装Java.可以先安装[Java8](https://cr.triority.cc/f/opua/java8.exe)
 当然你也可以安装java16或17,但是java8更常用,除非你喜欢用MC的最新版本,显然最好的办法就是三个版本全都安装,具体使用哪个在启动器里设置.
 注: 本文所述内容要求硬件为64位,如果你是使用32位处理器,请使用32位java8并使用1.16以下MC版本.
 ### 启动器
@@ -44,8 +44,8 @@ hmcl启动器基于Java,所以必须安装完Java,也就是完成第一步之后
 ### 适合MC的Java
 是时候下载MC了,你要选择合适的版本,比较经典的比如1.7.10/1.12.2/1.16.5/1.17.2/1.18.1
 如果你选择的版本低于或等于1.16,那么你不再需要变更你的Java,因为需要的Java8已经在第一步安装好了
-如果你选择了1.17.x,那么你需要安装[java16](https://cr.triority.cn/f/pKCk/java16.exe)
-如果你选择了1.18.x及以上,那么你需要安装[java17](https://cr.triority.cn/f/JPfK/java17.exe)
+如果你选择了1.17.x,那么你需要安装[java16](https://cr.triority.cc/f/pKCk/java16.exe)
+如果你选择了1.18.x及以上,那么你需要安装[java17](https://cr.triority.cc/f/JPfK/java17.exe)
 
 ### 下载MC
 在左侧选择下载,下载你选择的版本.

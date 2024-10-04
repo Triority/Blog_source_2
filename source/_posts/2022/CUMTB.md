@@ -11,4 +11,4 @@ categories:
 ---
 这么好的活，不发出来太可惜了
 [转自一位学弟]
-{% dplayer "url=https://cr.triority.cn/f/3Qtp/%E7%89%A2%E6%88%BF~1.mp4" %}
+{% dplayer "url=https://cr.triority.cc/f/3Qtp/%E7%89%A2%E6%88%BF~1.mp4" %}
