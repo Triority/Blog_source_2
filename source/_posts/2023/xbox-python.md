@@ -309,7 +309,7 @@ control_speed = 1500  # 500-1499倒车/1500停车/1501-2500前进
 turn_mid = 90  # 舵机中值是90
 direction = 0
 run = 0
-server = ("triority.cn", 7788)
+server = ("triority.cc", 7788)
 
 
 def get_data():
@@ -376,7 +376,7 @@ import time
 # 压缩参数，对于jpeg来说，15代表图像质量，越高代表图像质量越好为 0-100，默认95
 encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 20]
 string_data = ''
-address = ('triority.cn', 8002)
+address = ('triority.cc', 8002)
 
 def read_video():
     global string_data
@@ -701,4 +701,4 @@ while 1:
 ```
 ## RUN！
 
-{% dplayer "url=https://cr.triority.cn/f/95Lum/car_school.mp4" %}
+{% dplayer "url=https://cr.triority.cc/f/95Lum/car_school.mp4" %}

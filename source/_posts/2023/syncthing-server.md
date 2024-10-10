@@ -70,11 +70,11 @@ wget https://github.com/syncthing/relaysrv/releases
 
 协议监听地址：
 ```
-tcp4://0.0.0.0:22000,relay://triority.cn:22067/?id=your_id
+tcp4://0.0.0.0:22000,relay://triority.cc:22067/?id=your_id
 ```
 
 全局发现服务器
 ```
-https://triority.cn:8443/?id=your_id, default
+https://triority.cc:8443/?id=your_id, default
 ```
 

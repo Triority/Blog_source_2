@@ -111,7 +111,7 @@ import json
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-addr = ("triority.cn", 12345)
+addr = ("triority.cc", 12345)
 room_id = input("请输入房间号：")
 name = input("请输入你的昵称：")
 client = {"room_id": room_id, "name": name}
@@ -387,7 +387,7 @@ import threading
 import json
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-addr = ("triority.cn", 12345)
+addr = ("triority.cc", 12345)
 
 
 def recv_msg():

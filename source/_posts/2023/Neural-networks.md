@@ -363,7 +363,7 @@ if cv2.waitKey(0) == 27:
 # 使用pytorch
 该说不说，前面写的都是原理解释，实际上写的很麻烦(而且很屎)，而使用pytorch可以极大简化细节。
 
-pytorch的安装就不说了，不过可以安装使用cuda的版本加速计算。这个具体安装方法可以参考之前的文章：[pytorch环境配置及使用nanodet进行模型训练和识别](https://triority.cn/2022/nanodet-train/)。当然没有nvidia显卡的设备就没那么多麻烦了。
+pytorch的安装就不说了，不过可以安装使用cuda的版本加速计算。这个具体安装方法可以参考之前的文章：[pytorch环境配置及使用nanodet进行模型训练和识别](https://triority.cc/2022/nanodet-train/)。当然没有nvidia显卡的设备就没那么多麻烦了。
 
 
 # 参考资料

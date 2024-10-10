@@ -149,7 +149,7 @@ for i in list:
 
 ### 使用自建邮箱
 这一段是半年之后才想起来写的，已经不记得当初为什么要改代码了，但是既然改了在这也留一份吧
-后来搭建了自己的邮箱系统，用`triority@triority.cn`这个地址发送，代码改成了这样：
+后来搭建了自己的邮箱系统，用`triority@triority.cc`这个地址发送，代码改成了这样：
 ```python
 import requests
 import time
@@ -159,7 +159,7 @@ list = [["xxx@qq.com", '100000','Triority']
 
 
 def send_mail(mail_from, password, mail_to, subject, content, subtype=None):
-    url = 'http://triority.cn:8888/mail_sys/send_mail_http.json'
+    url = 'http://triority.cc:8888/mail_sys/send_mail_http.json'
     pdata = {}
     pdata['mail_from'] = mail_from
     pdata['password'] = password
@@ -271,7 +271,7 @@ def txt(key,location,name):
 
 if __name__ == '__main__':
     for i in list:
-        mail_from = 'triority@triority.cn'
+        mail_from = 'triority@triority.cc'
         password = 'xxxxxxxxxxxx'
         mail_to = i[0]
         subject = '今日天气预报'

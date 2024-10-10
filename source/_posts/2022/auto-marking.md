@@ -187,7 +187,7 @@ cv2.destroyAllWindows()
 [![原文效果](https://img-blog.csdnimg.cn/20200518222637855.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2w2NDEyMDgxMTE=,size_16,color_FFFFFF,t_70 "原文效果")](https://blog.csdn.net/l641208111/article/details/106202138?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165587477616782388089921%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165587477616782388089921&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-106202138-null-null.142%5Ev20%5Ehuaweicloudv1,157%5Ev15%5Enew_3&utm_term=opencv%E5%9B%BE%E7%89%87%E5%8F%A0%E5%8A%A0python&spm=1018.2226.3001.4187 "原文效果")
 
 ## 随机缩放
-[opencv笔记关于缩放的内容](http://triority.cn/2022/05/13/python-opencv%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#%E7%BC%A9%E6%94%BE "opencv笔记关于缩放的内容")
+[opencv笔记关于缩放的内容](http://triority.cc/2022/05/13/python-opencv%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#%E7%BC%A9%E6%94%BE "opencv笔记关于缩放的内容")
 
 ## RGB随机化
 实际拍摄中不可能光照等环境完全相同，颜色必然有一定偏差，所以这必须模拟出来
@@ -330,7 +330,7 @@ if __name__ == '__main__':
 
 ## 模糊
 有的时候相机拍摄会有模糊现象，so：
-以下内容引自我博客的文章[opencv学习笔记](http://triority.cn/2022/05/13/python-opencv%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ "opencv学习笔记")
+以下内容引自我博客的文章[opencv学习笔记](http://triority.cc/2022/05/13/python-opencv%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ "opencv学习笔记")
 ```python
 #中值滤波
 #其中5表示在中心点5*5范围内计算,可改为大于1的奇数

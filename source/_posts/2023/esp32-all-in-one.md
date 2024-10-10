@@ -2492,7 +2492,7 @@ https://blog.csdn.net/supermodule/article/details/129313032
 https://blog.csdn.net/weixin_42880082/article/details/121055405
 https://blog.csdn.net/weixin_42880082/article/details/120766154
 https://blog.csdn.net/qq_41650023/article/details/124674493
-https://triority.cn/2023/xbox-python/
+https://triority.cc/2023/xbox-python/
 https://www.cnblogs.com/greyelectron/articles/16327709.html
 https://blog.csdn.net/qq_41868901/article/details/106203642
 https://blog.csdn.net/qq_27114397/category_7917392.html

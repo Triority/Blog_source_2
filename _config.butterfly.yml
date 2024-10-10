@@ -159,13 +159,13 @@ toc:
 post_copyright:
   enable: true
   decode: false
-  author_href: https://triority.cc
+  author_href: https://www.triority.cc/
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 # Sponsor/reward
 reward:
-  enable: true
+  enable: false
   QR_code:
     - img: /img/wx.png
       link:

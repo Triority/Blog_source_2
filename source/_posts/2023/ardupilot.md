@@ -15,8 +15,8 @@ description: 晚上心血来潮随手搓个四轴玩
 
 # 软件安装及配置
 ## 软件资源下载
-[地面站下载](https://cr.triority.cn/f/J0PsK/MP1.3.28.msi)
-[飞控固件下载](https://cr.triority.cn/f/p5KIk/ardupilot.rar)
+[地面站下载](https://cr.triority.cc/f/J0PsK/MP1.3.28.msi)
+[飞控固件下载](https://cr.triority.cc/f/p5KIk/ardupilot.rar)
 
 ## minim OSD显示配置
 
@@ -43,5 +43,5 @@ GPS箭头方向必须与飞控相同，否则定点飞行将会发生持续漂�
 ## 机架2.0
 这次机架改进了很多，首先是集成了所有电控部分在中间的长方体里，同时考虑到便携性，四个电机支架可以用手拧螺丝直接拆装，电池部分也改成扎带绑在上面，下部空出位置放置相机云台等。不过由于这个结构，机身重量也增加了三五十克。
 
-{% dplayer "url=https://cr.triority.cn/f/vzZIl/1686471126438.mp4" %}
+{% dplayer "url=https://cr.triority.cc/f/vzZIl/1686471126438.mp4" %}
 

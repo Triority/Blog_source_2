@@ -16,7 +16,7 @@ description: STM32基础，以STM32F103C8T6最小系统板为例
 
 ![单片机命名规则](20210115142206386.png)
 
-[STM32F103系列中文芯片手册](https://cr.triority.cn/f/1r0uP/STM32F103%E4%B8%AD%E6%96%87%E6%95%99%E7%A8%8B%E5%8F%8A%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C.pdf)
+[STM32F103系列中文芯片手册](https://cr.triority.cc/f/1r0uP/STM32F103%E4%B8%AD%E6%96%87%E6%95%99%E7%A8%8B%E5%8F%8A%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C.pdf)
 
 ### 下载烧录
 STM32单片机支持3种程序下载方式
@@ -69,7 +69,7 @@ http://dan.drown.org/stm32duino/package_STM32duino_index.json
 
 #### 使用keil编程
 `Keil uVision`:编程工具，可以在官网注册获取下载链接，可能需要自行搜索破解，虽然不破解也能正常使用基础功能。
-`STM32 ST-LINK Utility`：配套`ST-LINK`一起使用的烧录工具，包含`ST-Link`驱动，同样可以在官网下载，我也[copy的一份在网盘上](https://cr.triority.cn/f/2L8tv/STM32-ST-LINK-Utility-setup.exe)
+`STM32 ST-LINK Utility`：配套`ST-LINK`一起使用的烧录工具，包含`ST-Link`驱动，同样可以在官网下载，我也[copy的一份在网盘上](https://cr.triority.cc/f/2L8tv/STM32-ST-LINK-Utility-setup.exe)
 
 其中如果使用后者进行下载而不是keil自带的下载按钮，需要设置keil编译后输出`.hex`文件：![设置生成hex文件](QQ截图20230511175030.png)
 

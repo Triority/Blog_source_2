@@ -23,7 +23,7 @@ python -m pip install pymysql
 ```
 ### 建立连接访问数据库和断开连接
 ```
-db = pymysql.connect(host='triority.cn',
+db = pymysql.connect(host='triority.cc',
                      user='triority',
                      password='xxx',
                      database='qqbot')

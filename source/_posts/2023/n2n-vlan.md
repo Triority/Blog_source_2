@@ -42,7 +42,7 @@ sudo edge -c mynetwork -k mysecretpass -a 192.168.100.1 -f -l supernode.ntop.org
 ```
 针对于我的配置：
 ```
-sudo edge -f -l triority.cn:9527 -a 192.168.100.x -c triority
+sudo edge -f -l triority.cc:9527 -a 192.168.100.x -c triority
 ```
 我的服务器使用了白名单，所以就不要尝试使用我的服务器了
 

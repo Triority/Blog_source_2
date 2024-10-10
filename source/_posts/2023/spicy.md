@@ -15,21 +15,21 @@ description: SPICY！（全原图文章！移动网络环境慎入！）
 ## 40h的火车
 原计划是乘坐2.1耗时31h的火车，晚上十点多从沈阳出发，两天之后的早上到达，结果由于重度拖延症买票时候已经没有卧铺票了，要么等到2.3，要么换40h的火车。我们选择了后者，好吧下次一定早买！
 
-![《长途跋涉》](https://cr.triority.cn/f/P1to/Screenshot_2023-02-01-22-46-09-795_com.MobileTicket.jpg)
+![《长途跋涉》](https://cr.triority.cc/f/P1to/Screenshot_2023-02-01-22-46-09-795_com.MobileTicket.jpg)
 
 第一天晚上还是硬座，第二天晚上才有硬卧睡。我在硬座的最外面，好消息是可以起来活动，坏消息是没有东西靠着睡觉。每到一个站点周围还有许多人上下车，干脆不睡了，正好前几天在论坛上看见一个无感无刷电调设计的教程文档，下载记录里翻出来看了看，顺便自己也画了一个原理图，第一天晚上也就这样过去了。早上我去里面趴桌子上睡了会，醒来已经是中午，快要到石家庄站转车了。
 
-![电脑？充电宝！](https://cr.triority.cn/f/kzU7/IMG_20230205_024039_344.jpg)
+![电脑？充电宝！](https://cr.triority.cc/f/kzU7/IMG_20230205_024039_344.jpg)
 ## 中转石家庄火车站
-![我到河北省来](https://cr.triority.cn/f/gks2/IMG_20230202_133204.jpg)
+![我到河北省来](https://cr.triority.cc/f/gks2/IMG_20230202_133204.jpg)
 
 在石家庄中转有5个多小时，当然要出去逛一逛，这一逛有点哈人。出站首先看见的当然是火车站全貌，如下图所示(有那味了)：
 
-![石家庄站](https://cr.triority.cn/f/7PCp/IMG_20230202_162131.jpg)
+![石家庄站](https://cr.triority.cc/f/7PCp/IMG_20230202_162131.jpg)
 
 emmm看这个建筑给人一种强烈的的压迫感，而且地下结构繁多，无障碍几乎没有(拎着大行李箱上很长一段台阶)。用某位自称松鼠皇帝的同学的话来说，简直就是古代的陵墓一样。除了火车站，很显眼的还有对面的大楼，我称之为《交投烂额》：
 
-![《交投烂额》](https://cr.triority.cn/f/GDfo/IMG_20230202_134231.jpg)
+![《交投烂额》](https://cr.triority.cc/f/GDfo/IMG_20230202_134231.jpg)
 
 好吧不管它，大中午的要找地方吃饭啦。从车站出来之后的路上，遇到两伙人，手里没拿东西，看起来是本地人，问我们火车站怎么走，嗯有点离谱。后来一边走我们一边创作火车站怪谈：
 > 石家庄火车站怪谈：
@@ -43,85 +43,85 @@ emmm看这个建筑给人一种强烈的的压迫感，而且地下结构繁多�
 > 
 > 至于第4条，则是因为在火车站对面的商业街竟然几乎不见人影，店铺大部分也都是关门的，大概是这样的：
 
-![商业街？](https://cr.triority.cn/f/EmuX/IMG_20230202_140306.jpg)
+![商业街？](https://cr.triority.cc/f/EmuX/IMG_20230202_140306.jpg)
 
 那里还有个天桥：
 
-![天桥](https://cr.triority.cn/f/Ayhr/IMG_20230202_135902.jpg)
+![天桥](https://cr.triority.cc/f/Ayhr/IMG_20230202_135902.jpg)
 
 后来在一家火锅店吃了午饭。不过提前感谢这家店，因为接下来的卧铺竟然没有电源插座，前一天的硬座车厢没有我还能理解，那时候已经用光了充电宝的电量。在这家火锅店充满了电脑和手机，才让我们在接下来的一天多有电用hhh
 
 接下来就是另一段旅程，过了第二晚，从平坦的华北平原来到了丘陵地形。火车不停的在一个个隧道穿进穿出，很烦因为隧道里没有信号，刚出隧道有信号了，随即钻进下一段隧道。
 
-![在火车上拍的窗外](https://cr.triority.cn/f/lGFM/IMG_20230203_100553.jpg)
+![在火车上拍的窗外](https://cr.triority.cc/f/lGFM/IMG_20230203_100553.jpg)
 
 ## 到达重庆
 到达的时间是下午，提前预定的酒店在观音桥步行街，位置很好但是价格比较贵而且房间不是很好，最可恶一点就是没有窗户。总之以后再也不会要没有窗户的房间了。顺便展示一下写文章的现在的房间，就是现在拍的：
 
-![窗户!](https://cr.triority.cn/f/dqTe/65797e9ee7859b4db872b1169a99fee.jpg)
+![窗户!](https://cr.triority.cc/f/dqTe/65797e9ee7859b4db872b1169a99fee.jpg)
 
 嘿最爱窗户了！
 
 出于成本考虑，我们三个人甚至住的二人间。床是两个1.1m的，为晚上闵某挤我埋伏笔做铺垫。第一天晚上在楼下的观音桥步行街吃的酸菜鱼。酸菜鱼挺好吃，但是我用汤泡了饭，那个汤居然那么辣！被迫倒掉半碗饭加点新的饭才吃得下去，好吧对于浪费半碗食物的行为我会抽空敲敲木鱼的。有一个学弟也在重庆，而且很巧就住在观音桥附近，于是也叫来和我们聊天。**这里记个小本本，闵某加我学弟微信然后发我的丑照**。晚上我和学弟在周围逛街，过了嘉陵江大桥,远看了看洪崖洞:
 
-![嘉陵江大桥](https://cr.triority.cn/f/BwHE/IMG_20230203_220249.jpg)
-![嘉陵江大桥](https://cr.triority.cn/f/wdIP/IMG_20230203_223913.jpg)
-![嘉陵江大桥](https://cr.triority.cn/f/ryiy/IMG_20230204_120203.jpg)
-![嘉陵江大桥](https://cr.triority.cn/f/XXSV/IMG_20230204_120448.jpg)
-![嘉陵江大桥](https://cr.triority.cn/f/Zzcl/IMG_20230204_120708.jpg)
+![嘉陵江大桥](https://cr.triority.cc/f/BwHE/IMG_20230203_220249.jpg)
+![嘉陵江大桥](https://cr.triority.cc/f/wdIP/IMG_20230203_223913.jpg)
+![嘉陵江大桥](https://cr.triority.cc/f/ryiy/IMG_20230204_120203.jpg)
+![嘉陵江大桥](https://cr.triority.cc/f/XXSV/IMG_20230204_120448.jpg)
+![嘉陵江大桥](https://cr.triority.cc/f/Zzcl/IMG_20230204_120708.jpg)
 
 后来又去了解放碑，据学弟介绍是1945年为了纪念抗战胜利而建造：
 
-![人民解放纪念碑](https://cr.triority.cn/f/yPty/IMG_20230203_230013.jpg)
+![人民解放纪念碑](https://cr.triority.cc/f/yPty/IMG_20230203_230013.jpg)
 
 后来回到观音桥，去了学弟家楼下的烧烤摊吃了点烧烤。众所周知我是不吃辣的，烧烤没有跟老板说这个需求，体验一下，实测还能接受，除了最后那个豆腐片。那个东西简直就是一大块活性炭，吸附无数辣酱，尝试吃了几口真的不行了。其他的串倒还好，如果有点辣就喝几口酒问题不大。
 
-![](https://cr.triority.cn/f/N1UV/IMG_20230204_003501.jpg)
+![](https://cr.triority.cc/f/N1UV/IMG_20230204_003501.jpg)
 
 吃饱喝足，回到旅店。拍摄于观音桥步行街：
 
-![观音桥步行街](https://cr.triority.cn/f/58sE/IMG_20230204_121407.jpg)
+![观音桥步行街](https://cr.triority.cc/f/58sE/IMG_20230204_121407.jpg)
 
-![5G固定电话亭，挺有意思的](https://cr.triority.cn/f/amCQ/IMG_20230204_121214.jpg)
+![5G固定电话亭，挺有意思的](https://cr.triority.cc/f/amCQ/IMG_20230204_121214.jpg)
 
 ## 2.4，第二天————重庆轨道交通
 前一天晚上烧烤吃到了4点多，醒来已经是中午十二点了，好吧其实第三天也是中午才醒。
 ### 每天都是大雾天
 第二天下午学弟带着我来到了重庆的一些景点。首先给我留下深刻印象的就是这里的轨道交通，习惯上我叫这个地铁，不过它真的不在地下，而是基本都在天上，学弟表示这个当地叫他轻轨。这里的桥要修一个地铁换乘站似乎是一个不成文的规定，桥上总是有一个换乘站，同时，这里的天气几乎都是大雾，阴天。在桥上远眺都是大楼的轮廓：
 
-![桥上的换乘站](https://cr.triority.cn/f/bZfJ/IMG_20230204_160843.jpg)
-![雾蒙蒙](https://cr.triority.cn/f/0MuJ/IMG_20230204_160939.jpg)
-![下楼换乘](https://cr.triority.cn/f/n0hO/IMG_20230204_160957.jpg)
-![另一侧](https://cr.triority.cn/f/mVFb/IMG_20230204_161230.jpg)
-![《桁架结构》](https://cr.triority.cn/f/eDT2/IMG_20230204_161346.jpg)
+![桥上的换乘站](https://cr.triority.cc/f/bZfJ/IMG_20230204_160843.jpg)
+![雾蒙蒙](https://cr.triority.cc/f/0MuJ/IMG_20230204_160939.jpg)
+![下楼换乘](https://cr.triority.cc/f/n0hO/IMG_20230204_160957.jpg)
+![另一侧](https://cr.triority.cc/f/mVFb/IMG_20230204_161230.jpg)
+![《桁架结构》](https://cr.triority.cc/f/eDT2/IMG_20230204_161346.jpg)
 ### 穿楼的轻轨————李子坝站
 这里可谓是人山人海，学弟表示对此十分厌倦，因为高中上学每天都要经过这个站点hhh
 
 下车看看我们是怎样钻进这栋楼的：
 
-![](https://cr.triority.cn/f/M5HK/IMG_20230204_161951.jpg)
+![](https://cr.triority.cc/f/M5HK/IMG_20230204_161951.jpg)
 
 没感觉？下楼看看：
 
-![竟然是原有居民搬迁然后修的站点，大楼设计的很强嘛](https://cr.triority.cn/f/z5IN/IMG_20230204_163045.jpg)
+![竟然是原有居民搬迁然后修的站点，大楼设计的很强嘛](https://cr.triority.cc/f/z5IN/IMG_20230204_163045.jpg)
 
-{% dplayer "url=https://cr.triority.cn/f/KGIV/VID_20230204_163125.mp4" %}
+{% dplayer "url=https://cr.triority.cc/f/KGIV/VID_20230204_163125.mp4" %}
 
 没错先下楼再上楼hhh然后等下一班继续往前走，有个地方还挺有趣的，有的轻轨列车系统和站台的门不兼容，需要司机开门出来手动拉站台边的拉杆才能开门，这图里就能看见那个控制开关：
 
-![手动开门](https://cr.triority.cn/f/Rwie/IMG_20230204_162145.jpg)
+![手动开门](https://cr.triority.cc/f/Rwie/IMG_20230204_162145.jpg)
 
 发车！
 
-{% dplayer "url=https://cr.triority.cn/f/8ZcE/VID_20230207_185819.mp4" %}
+{% dplayer "url=https://cr.triority.cc/f/8ZcE/VID_20230207_185819.mp4" %}
 
 ### 山城重庆————跑重庆爬山去了是吧
 然后我们去了一个小山，真就小公园没几分钟就上去了。在山顶拍了一些照片，嗯完全就是拍大雾：
 
-![](https://cr.triority.cn/f/OASj/IMG_20230204_163239.jpg)
-![](https://cr.triority.cn/f/Dagcr/IMG_20230204_171535.jpg)
-![](https://cr.triority.cn/f/9LLtm/IMG_20230204_171622.jpg)
-![](https://cr.triority.cn/f/QAeUl/IMG_20230204_173040.jpg)
+![](https://cr.triority.cc/f/OASj/IMG_20230204_163239.jpg)
+![](https://cr.triority.cc/f/Dagcr/IMG_20230204_171535.jpg)
+![](https://cr.triority.cc/f/9LLtm/IMG_20230204_171622.jpg)
+![](https://cr.triority.cc/f/QAeUl/IMG_20230204_173040.jpg)
 
 你看见了什么？没错！那是一颗飞星！！！
 
@@ -130,86 +130,86 @@ emmm看这个建筑给人一种强烈的的压迫感，而且地下结构繁多�
 ### @SRW
 孙某同学想要看某座大楼，去拍了一张，那个大楼我不是很感兴趣不过对面的江面和桥嘛：
 
-![好吧我才发现手机长曝光的功能](https://cr.triority.cn/f/37Qsp/IMG_20230204_200322.jpg)
-![有一艘船哎](https://cr.triority.cn/f/110CP/IMG_20230205_171431.jpg)
+![好吧我才发现手机长曝光的功能](https://cr.triority.cc/f/37Qsp/IMG_20230204_200322.jpg)
+![有一艘船哎](https://cr.triority.cc/f/110CP/IMG_20230205_171431.jpg)
 
 ### 玩会？喝点？
 闵某想要点夜生活的氛围，来到了酒吧，玩了会小游戏，喝了`点`酒：
 
-![先来135块的(后来又来了120块的)](https://cr.triority.cn/f/2A8fv/IMG_20230204_230509.jpg)
+![先来135块的(后来又来了120块的)](https://cr.triority.cc/f/2A8fv/IMG_20230204_230509.jpg)
 
 跟大家说一下，闵某喝酒都打烟雾弹，说自己看东西都模糊了，然后上厕所健步如飞，一边跟我炫耀能喝多少白酒！
 
-![亿点](https://cr.triority.cn/f/p2Kik/IMG_20230205_044109_788.jpg)
+![亿点](https://cr.triority.cc/f/p2Kik/IMG_20230205_044109_788.jpg)
 
 当然千万不要喝太多，在酒吧上厕所途中看见好几个被人架着抬出去或者边走变吐的，千万不要喝那么多哦！
 
-![重庆的夜生活真是精彩，后半夜街上人山人海](https://cr.triority.cn/f/JaPhK/IMG_20230205_170023.jpg)
+![重庆的夜生活真是精彩，后半夜街上人山人海](https://cr.triority.cc/f/JaPhK/IMG_20230205_170023.jpg)
 
 ## 2.5，元宵节
 醒来又是下午，发现三体电视剧更完了，一口气看完，已经是下午了。退房然后找到新的旅店，已经是晚上。我们去了之前就看过的洪崖洞，近距离的看。不过似乎没啥好玩的，一个纯纯的商业街。随手拍几张，没啥有趣事。
 
-![随手拍几张](https://cr.triority.cn/f/oDpFa/IMG_20230206_002347.jpg)
-![不知道那个红色建筑干嘛的](https://cr.triority.cn/f/vVZTl/IMG_20230206_002827.jpg)
+![随手拍几张](https://cr.triority.cc/f/oDpFa/IMG_20230206_002347.jpg)
+![不知道那个红色建筑干嘛的](https://cr.triority.cc/f/vVZTl/IMG_20230206_002827.jpg)
 
 买了返程机票。2.9的6:45在江北机场。计划2.6再逛逛，2.7去成都，2.8晚上回来直接去机场，2.9早上回家！飞机11:10到达沈阳桃仙机场。就写到这咯，现在是2.6的02:53，睡觉。
 
 ## 2.6————体验重庆火锅
 今天稍作休息，下午到嘉陵江和长江交汇处逛了逛，沿着南滨路走了三四公里：
 
-![日常拍大桥](https://cr.triority.cn/f/LZRiZ/IMG_20230207_011437.jpg)
-![两江交汇](https://cr.triority.cn/f/KoGSV/IMG_20230207_011535.jpg)
+![日常拍大桥](https://cr.triority.cc/f/LZRiZ/IMG_20230207_011437.jpg)
+![两江交汇](https://cr.triority.cc/f/KoGSV/IMG_20230207_011535.jpg)
 
 晚上回到旅店，在旅店楼下找了家火锅店。不是很想去商业街，感觉那边的东西又贵又不正宗，还是普通居民楼附近的更好。不过刚进门第一桌就把我震撼到了：
 
-![除了辣椒，都是佐料](https://cr.triority.cn/f/q9YHA/IMG_20230206_210407.jpg)
+![除了辣椒，都是佐料](https://cr.triority.cc/f/q9YHA/IMG_20230206_210407.jpg)
 
 感觉主食是辣椒，其他的都是佐料。显而易见我们是鸳鸯锅，辣的那边尝了一口，下次不要再尝了。闵某吃的辣半锅，罕见的吃了三碗饭喝两杯蜜雪冰城，看来他十分享受呢！
 
-![鸳鸯锅](https://cr.triority.cn/f/V7EiK/IMG_20230206_211526.jpg)
+![鸳鸯锅](https://cr.triority.cc/f/V7EiK/IMG_20230206_211526.jpg)
 
 今晚是三个人一起的最后一晚，明天星文老师要去云南和别的小伙伴玩了。我的计划是和闵2.7去成都走走看看，2.8晚上回来直接去机场。已经买了2.9早上6点回沈阳的飞机了。
 
 说到旅店，这两天住的旅店叫做里仁巷都市客栈，还是很有必要详细说说。这里的环境感觉真的不错(不排除前两天住的太差的因素)，前面已经有了一张窗户边的照片，这个旅店占这栋楼的4层大约一半，和另一半的另一家旅店用一个小帘子隔开。另一家旅店装修就是十分精简，走廊里除了白色的墙和地砖就是房门，帘子的另一边风格骤变。走廊里还有三只老板娘的猫咪窜来窜去，走到尽头就是厨房，早上可以来吃早饭。厨房里还有一扇玻璃门通向外面的平台，上面都是各种花花草草。晚上还发现房间里的书是真的，刚开还以为是模型：
 
-![书架](https://cr.triority.cn/f/YRbcl/IMG_20230207_100753.jpg)
-![甚至还有藏书印](https://cr.triority.cn/f/jVwtV/IMG_20230207_100824.jpg)
+![书架](https://cr.triority.cc/f/YRbcl/IMG_20230207_100753.jpg)
+![甚至还有藏书印](https://cr.triority.cc/f/jVwtV/IMG_20230207_100824.jpg)
 
 ## 2.7
 好吧时间问题(起床时间问题)，成都没去成，于是去了重庆的动物园。
 ### 动物园
 游客不算特别多，大部分都是本地人带小孩子来玩。
-![](https://cr.triority.cn/f/8dZUE/IMG_20230207_123317.jpg)
-![躺平x1](https://cr.triority.cn/f/Py1so/IMG_20230207_123356.jpg)
-![吃x1](https://cr.triority.cn/f/k5zh7/IMG_20230207_123659.jpg)
-![躺+吃](https://cr.triority.cn/f/g5kF2/IMG_20230207_123833.jpg)
-![躺+吃](https://cr.triority.cn/f/7LPup/IMG_20230207_123835.jpg)
-![冒泡](https://cr.triority.cn/f/GnDho/IMG_20230207_124418.jpg)
-![](https://cr.triority.cn/f/EjmFX/IMG_20230207_124611.jpg)
-![躺平x2](https://cr.triority.cn/f/ARyTr/IMG_20230207_183302.jpg)
-!["不行你不能躺"](https://cr.triority.cn/f/dKqIe/IMG_20230207_124715.jpg)
-![](https://cr.triority.cn/f/l8GHM/IMG_20230207_125842.jpg)
-![emmm有点瘦呢](https://cr.triority.cn/f/BgwiE/IMG_20230207_130045.jpg)
-![你瞅啥](https://cr.triority.cn/f/wydSP/IMG_20230207_130420.jpg)
-![“这个原始人仰望星空的时间超过了预警阀值，已对宇宙表现出了充分的好奇，到此为止，已在不同的地点观察到了十例这样的超限事件，符合报警条件。”————《朝闻道》](https://cr.triority.cn/f/rQycy/IMG_20230207_130451.jpg)
-![哦好吧可是我没带吃的给你](https://cr.triority.cn/f/XLXtV/IMG_20230207_131620.jpg)
-![](https://cr.triority.cn/f/ZOzUl/IMG_20230207_135702.jpg)
-![](https://cr.triority.cn/f/ywPsy/IMG_20230207_140224.jpg)
-![躺平x3](https://cr.triority.cn/f/N01iV/IMG_20230207_183059.jpg)
-![](https://cr.triority.cn/f/508SE/IMG_20230207_183208.jpg)
+![](https://cr.triority.cc/f/8dZUE/IMG_20230207_123317.jpg)
+![躺平x1](https://cr.triority.cc/f/Py1so/IMG_20230207_123356.jpg)
+![吃x1](https://cr.triority.cc/f/k5zh7/IMG_20230207_123659.jpg)
+![躺+吃](https://cr.triority.cc/f/g5kF2/IMG_20230207_123833.jpg)
+![躺+吃](https://cr.triority.cc/f/7LPup/IMG_20230207_123835.jpg)
+![冒泡](https://cr.triority.cc/f/GnDho/IMG_20230207_124418.jpg)
+![](https://cr.triority.cc/f/EjmFX/IMG_20230207_124611.jpg)
+![躺平x2](https://cr.triority.cc/f/ARyTr/IMG_20230207_183302.jpg)
+!["不行你不能躺"](https://cr.triority.cc/f/dKqIe/IMG_20230207_124715.jpg)
+![](https://cr.triority.cc/f/l8GHM/IMG_20230207_125842.jpg)
+![emmm有点瘦呢](https://cr.triority.cc/f/BgwiE/IMG_20230207_130045.jpg)
+![你瞅啥](https://cr.triority.cc/f/wydSP/IMG_20230207_130420.jpg)
+![“这个原始人仰望星空的时间超过了预警阀值，已对宇宙表现出了充分的好奇，到此为止，已在不同的地点观察到了十例这样的超限事件，符合报警条件。”————《朝闻道》](https://cr.triority.cc/f/rQycy/IMG_20230207_130451.jpg)
+![哦好吧可是我没带吃的给你](https://cr.triority.cc/f/XLXtV/IMG_20230207_131620.jpg)
+![](https://cr.triority.cc/f/ZOzUl/IMG_20230207_135702.jpg)
+![](https://cr.triority.cc/f/ywPsy/IMG_20230207_140224.jpg)
+![躺平x3](https://cr.triority.cc/f/N01iV/IMG_20230207_183059.jpg)
+![](https://cr.triority.cc/f/508SE/IMG_20230207_183208.jpg)
 
-{% dplayer "url=https://cr.triority.cn/f/jwSV/VID_20230207_123607.mp4" %}
-{% dplayer "url=https://cr.triority.cn/f/Ybil/VID_20230207_123708.mp4" %}
+{% dplayer "url=https://cr.triority.cc/f/jwSV/VID_20230207_123607.mp4" %}
+{% dplayer "url=https://cr.triority.cc/f/Ybil/VID_20230207_123708.mp4" %}
 
 ### 轻轨高架桥
 看起来有那么意思哈人是吧
-![](https://cr.triority.cn/f/aqmuQ/IMG_20230207_145949.jpg)
+![](https://cr.triority.cc/f/aqmuQ/IMG_20230207_145949.jpg)
 ### 火锅x2
 第一次尝试吃这种颜色的东西，无论如何都应该纪念一下
 其实也没那么辣的，但是我们两个人吃了3盆饭...没错，就是盆
-![其实也没那么辣的](https://cr.triority.cn/f/bLZtJ/IMG_20230207_155254.jpg)
+![其实也没那么辣的](https://cr.triority.cc/f/bLZtJ/IMG_20230207_155254.jpg)
 
 ## 闵某照片合辑
-![让我看看是谁脖子上挂着相机然后手机拍照](https://cr.triority.cn/f/0QMFJ/IMG_20230207_012014.jpg)
-![闵某正在拍摄新买的手办](https://cr.triority.cn/f/nl0TO/IMG_20230207_011823.jpg)
-![禁止依靠哦](https://cr.triority.cn/f/mnVHb/IMG_20230207_145710.jpg)
+![让我看看是谁脖子上挂着相机然后手机拍照](https://cr.triority.cc/f/0QMFJ/IMG_20230207_012014.jpg)
+![闵某正在拍摄新买的手办](https://cr.triority.cc/f/nl0TO/IMG_20230207_011823.jpg)
+![禁止依靠哦](https://cr.triority.cc/f/mnVHb/IMG_20230207_145710.jpg)

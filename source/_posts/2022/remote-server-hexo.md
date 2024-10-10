@@ -72,20 +72,20 @@ git config --global core.autocrlf false
 以我现在的windows系统为例，ssh配置文件位于`C:\Users\Triority\.ssh`目录内
 打开`config`文件，在其中添加：
 ```
-Host www.triority.cn
-    HostName www.triority.cn
+Host www.triority.cc
+    HostName www.triority.cc
     User triority
-    IdentityFile C:\Users\Triority\www.triority.cn_id_123456
+    IdentityFile C:\Users\Triority\www.triority.cc_id_123456
     IdentitiesOnly true
 ```
 修改为你自己的域名，用户名，密钥文件路径。
 如果你复制了密钥文件，可能出现权限过大拒绝使用这一密钥的情况，报错：
 ```
-PS F:\> ssh -i .\www.triority.cn_id_ed25519 root@www.triority.cn
+PS F:\> ssh -i .\www.triority.cc_id_ed25519 root@www.triority.cc
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-Permissions for '.\\www.triority.cn_id_ed25519' are too open.
+Permissions for '.\\www.triority.cc_id_ed25519' are too open.
 It is required that your private key files are NOT accessible by others.
 This private key will be ignored.
 ```
@@ -93,5 +93,5 @@ This private key will be ignored.
 文件属性-安全-高级-禁用继承-删除所有已继承权限-添加-选择主体-输入用户名-确定-完全控制-确定-确定
 即可使用密钥登陆：
 ```
-ssh -i .\www.triority.cn_id_123456 root@www.triority.cn
+ssh -i .\www.triority.cc_id_123456 root@www.triority.cc
 ```
