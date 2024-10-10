@@ -145,7 +145,7 @@ feed:
   limit: 20
 
 lazyload:
-  enable: true
+  enable: false
   onlypost: false
   loadingImg: /img/loading.gif
 
