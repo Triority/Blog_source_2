@@ -11,7 +11,7 @@ description: 这是一个相册不过也有可能作为朋友圈来发？
 ## 10.19：喇叭沟徒步
 {% gallery false,220,10 %}
 ![](/photo/media/bybrygbvsebgbueysugv.jpg)
-![](/photo/media/bybrygbvsebgbueysugvisef.jpg)
+![](/photo/media/bybrygbvsueysugvisef.jpg)
 {% endgallery %}
 
 ## 9.1：奥塔顶层
