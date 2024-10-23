@@ -8,6 +8,12 @@ description: 这是一个相册不过也有可能作为朋友圈来发？
 {% endnote %}
 
 # 2024
+## 10.19：喇叭沟徒步
+{% gallery false,220,10 %}
+![](/photo/media/微信图片_20241023102721.jpg)
+![](/photo/media/微信图片_20241023102824.jpg)
+{% endgallery %}
+
 ## 9.1：奥塔顶层
 {% gallery false,220,10 %}
 ![](/photo/media/DSC8842.jpg)
