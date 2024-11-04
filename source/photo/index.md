@@ -8,6 +8,12 @@ description: 这是一个相册不过也有可能作为朋友圈来发？
 {% endnote %}
 
 # 2024
+## 11.1：秋
+{% gallery false,220,10 %}
+![](/photo/media/a6f2d041e1593ca0f71564e868bfe91.jpg)
+![](/photo/media/9a6856c04eaba5a253de153f93d1083.jpg)
+{% endgallery %}
+
 ## 10.19：喇叭沟徒步
 {% gallery false,220,10 %}
 ![](/photo/media/bybrygbvsebgbueysugv.jpg)
