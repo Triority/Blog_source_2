@@ -28,3 +28,13 @@ description: 40th Anniversary Celebrating Amateur Radio in Human Spaceflight
 这是来自ARISS的奖励确认邮件
 
 ![](微信图片_20241123225213.jpg)
+
+# 2025
+新年之际这次活动再次尝试，但是没有使用定向天线，直接原装uvk5，效果良好：
+
+{% raw %}
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113731757474923&bvid=BV1Vn6pYFEap&cid=27583119378&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" ></iframe></div>
+{% endraw %}
+
+![](50f2689287694ac1ba88a1f5e973b31.jpg)
