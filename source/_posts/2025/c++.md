@@ -11,6 +11,8 @@ tags:
 # 主要内容
 这篇文章是c++的学习笔记，仅作为我自己的备忘录使用，不包含我已经非常熟悉的内容，所以不适合入门看哦，最好有其他语言基础，当然我猜这玩意也没人看（）
 
+所有示例程序都是我自己重新写的简化举例可放心参考。
+
 # 开发环境
 ## windows下开发：VS studio
 目前最新版本是2022，直接下载安装就能用，一切都已经准备好了
@@ -20,6 +22,41 @@ tags:
 
 # 正式开始
 ## 基本语法
+### 数据类型长度和范围
+c++标准没用固定值的规定，但是有最小标准：
++ `short`至少16位（-32,768 - 32,767）
++ `int`至少于`short`一样长
++ `long`至少32位（-2,147,483,648 - 2,147,483,647），且至少于`int`一样长
++ `long long`至少64位（-9,223,372,036,854,775,808 - 9,223,372,036,854,775,807），且至少于`long`一样长（有的系统不支持）
+
+可以通过`#include <climits>`获取具体范围：
+```c++
+.
+#include <iostream>
+#include <climits>
+
+int main(){
+    using namespace std;
+    int n_int = INT_MAX;
+    short n_short = SHRT_MAX;
+    long n_long = LONG_MAX;
+    long long n_llong = LLONG_MAX;
+
+    cout << "int is " << sizeof(int) << " bytes, maximum value: " << n_int << endl;
+    cout << "short is " << sizeof(int) << " bytes, maximum value: " << n_short << endl;
+    cout << "long is " << sizeof(int) << " bytes, maximum value: " << n_long << endl;
+    cout << "long long is " << sizeof(int) << " bytes, maximum value: " << n_llong << endl;
+    return 0;
+}
+
+```
+在我的64位windwos系统上结果为：
+```
+int is 4 bytes, maximum value: 2147483647
+short is 4 bytes, maximum value: 32767
+long is 4 bytes, maximum value: 2147483647
+long long is 4 bytes, maximum value: 9223372036854775807
+```
 
 ### 输入输出函数
 
@@ -60,14 +97,14 @@ int main(){
     //地址p为double*类型，值设置为取num的地址
     double* p = &num;
     //输出:00000004664FF714指向的值为1
-    std::cout << p << ':' << *p << '\n';
+    std::cout << p << ':' << *p << endl;
 
     //动态数组（动态联编）和赋值
     int* pz = new int [5];
     *pz = 1;
     pz[1] = 2;
     *(pz + 2) = 3;
-    std::cout << pz << ':' << pz[0] << pz[1] << pz[2] << '\n';
+    std::cout << pz << ':' << pz[0] << pz[1] << pz[2] << endl;
     //使用完成后释放（如果new有[]那么del时候要写[]，反之亦然）
     delete [] pz;
 
@@ -82,8 +119,143 @@ int main(){
 }
 
 ```
-### IO
+### 简单IO
 ```c++
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main(){
+    using namespace std;
+
+    //写入ofstream（覆盖原内容）
+    ofstream outfile;
+    outfile.open("info.txt");
+    string str0;
+    getline(cin,str0);
+    outfile << str0;
+    outfile.close();
+
+    //读取ifstream
+    ifstream infile;
+    infile.open("info.txt");
+    if (!infile.is_open()) {
+        cout << "ERROR";
+        exit(EXIT_FAILURE);
+    }
+    string str1;
+    while (infile.good()){
+        getline(infile,str1);
+        cout << str1 << endl;
+    }
+    return 0;
+}
+```
+### 函数应用
+#### 内联函数
+函数前加`inline`，编译器将函数代码替换函数调用，减少跳转导致的时间消耗
+```c++
+#include <iostream>
+
+inline long long square(long long x) {
+    return x * x;
+}
+
+int main(){
+    using namespace std;
+    long long num;
+    cin >> num;
+    cout << square(num);
+    return 0;
+}
+```
+#### 函数引用变量
+使用引用变量作为函数参数，函数将使用原始数据而不是其副本，可用于函数处理大型结构或进行类的设计
+```c++
+#include <iostream>
+
+int main(){
+    using namespace std;
+    int num = 100;
+    int & number = num;
+    cout << num << "---" << number << endl;
+    number++;
+    cout << num << "---" << number << endl;
+    return 0;
+}
+```
+此外需要注意，引用变量必须在创建时初始化，而且无法修改关联的变量。
+
+使用结构引用参数只需在声明结构参数时使用引用运算符`&`即可。例如如下结构定义，函数原型应该这样编写，从而在函数中将指向该结构的引用作为参数：
+```c++
+struct STRUCT{
+    std:string name;
+    int num;
+}
+void FUNC(STRUCT & s);
+//如果不希望函数修改传入的结构可使用const
+void FUNC(const STRUCT & s);
+```
+
+#### 参数重载
+可以通过函数重载来设计一系列函数，他们名称相同，完成相同的操作，但是使用不同的参数列表（他们的返回值类型也可以不一样）。
+
+#### 函数模板
+可以使用泛型来定义函数，避免了对函数多次几乎相同的编写
+```c++
+#include <iostream>
+
+template <typename T>
+void Swap(T &a, T &b);
+
+template <typename T>
+void Swap(T &a, T &b) {
+    T temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+
+int main(){
+    using namespace std;
+    int a = 10;
+    int b = 20;
+    cout << "a , b = " << a << " , " << b << endl;
+    Swap(a, b);
+    cout << "a , b = " << a << " , " << b << endl;
+
+    double c = 11.4;
+    double d = 51.4;
+    cout << "c , d = " << c << " , " << d << endl;
+    Swap(c, d);
+    cout << "c , d = " << c << " , " << d << endl;
+    return 0;
+}
 
 ```
+
+### 多文件
+#### 头文件
+头文件应该包含以下内容：
++ 函数原型
++ 使用`#define`或`const`定义的符号常量
++ 结构声明
++ 类声明
++ 模板声明
++ 内联函数
+
+在包含头文件时，应使用`a.h`而不是`<a.h>`，后者编译器会在存储标准头文件的位置查找，而前者先在当前工作目录查找，如果没用找到再去标准位置。
+
+为了避免包含同一个头文件多次（可能包含了另一个包含某个头文件的头文件），可以使用
+```c++
+#ifndef STH
+#define STH
+#endif
+```
+
+#### 存储持续性
++ 自动存储：函数中定义将在函数结束后释放。
++ 静态存储：在函数外定义的变量和用关键字`static`定义的变量。在整个程序运行过程中存在。
++ 线程存储：使用关键字`thread_local`声明，其生命周期和其所属线程一样长
++ 动态存储：使用`new`关键字分配，一直存在直到使用`delete`将其释放或程序结束。也被称为自由存储（free store）或堆（heap）
 
