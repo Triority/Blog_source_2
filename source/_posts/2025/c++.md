@@ -20,9 +20,8 @@ tags:
 ## 其他情况
 一些开源开发者朋友们得知我要学一遍c++，非常热情的想要教会我，并且建议我用vscode连接wsl在ubuntu虚拟机内使用clang/msvc开发（等我先学会再说）
 
-# 正式开始
-## 基本语法
-### 数据类型长度和范围
+# 基本语法
+## 数据类型长度和范围
 c++标准没用固定值的规定，但是有最小标准：
 + `short`至少16位（-32,768 - 32,767）
 + `int`至少于`short`一样长
@@ -58,7 +57,7 @@ long is 4 bytes, maximum value: 2147483647
 long long is 4 bytes, maximum value: 9223372036854775807
 ```
 
-### 输入输出函数
+## 输入输出函数
 
 ```c++
 #include <iostream>
@@ -81,7 +80,7 @@ int main(){
     return 0;
 }
 ```
-### 指针相关操作
+## 指针相关操作
 
 ```c++
 #include <iostream>
@@ -119,7 +118,7 @@ int main(){
 }
 
 ```
-### 简单IO
+## 简单IO
 ```c++
 #include <iostream>
 #include <fstream>
@@ -151,8 +150,8 @@ int main(){
     return 0;
 }
 ```
-### 函数应用
-#### 内联函数
+## 函数应用
+### 内联函数
 函数前加`inline`，编译器将函数代码替换函数调用，减少跳转导致的时间消耗
 ```c++
 #include <iostream>
@@ -169,7 +168,7 @@ int main(){
     return 0;
 }
 ```
-#### 函数引用变量
+### 函数引用变量
 使用引用变量作为函数参数，函数将使用原始数据而不是其副本，可用于函数处理大型结构或进行类的设计
 ```c++
 #include <iostream>
@@ -197,10 +196,10 @@ void FUNC(STRUCT & s);
 void FUNC(const STRUCT & s);
 ```
 
-#### 参数重载
+### 参数重载
 可以通过函数重载来设计一系列函数，他们名称相同，完成相同的操作，但是使用不同的参数列表（他们的返回值类型也可以不一样）。
 
-#### 函数模板
+### 函数模板
 可以使用泛型来定义函数，避免了对函数多次几乎相同的编写
 ```c++
 #include <iostream>
@@ -234,8 +233,8 @@ int main(){
 
 ```
 
-### 多文件
-#### 头文件
+## 多文件编程
+### 头文件
 头文件应该包含以下内容：
 + 函数原型
 + 使用`#define`或`const`定义的符号常量
@@ -253,9 +252,100 @@ int main(){
 #endif
 ```
 
-#### 存储持续性
+### 存储持续性
 + 自动存储：函数中定义将在函数结束后释放。
 + 静态存储：在函数外定义的变量和用关键字`static`定义的变量。在整个程序运行过程中存在。
+  + 链接性为外部，可在其他文件访问，必须在代码块外声明。在一个文件中定义，其他文件使用`extern`关键字声明。
+  + 链接性为内部，只能在当前文件访问，必须在代码块外声明并使用`static`限定符
+  + 无链接性，只能在当前函数或代码块内访问，必须在代码块内声明并使用`static`限定符
 + 线程存储：使用关键字`thread_local`声明，其生命周期和其所属线程一样长
 + 动态存储：使用`new`关键字分配，一直存在直到使用`delete`将其释放或程序结束。也被称为自由存储（free store）或堆（heap）
+
+### 说明符和限定符
+存储说明符：
++ auto（c++11中不再是说明符）
++ register
++ static
++ extern
++ thread_local（c++11新增的）
++ mutable
+
+限定符：
++ const
++ volatile（避免编译器进行将数据复制到寄存器的优化，因为硬件等可能对其进行修改，例如串口信息）
++ mutable（用于指出即使结构或类为const，其某个成员也可以进行修改）
+
+```c++
+struct data{
+    char name[10];
+    mutable int accesses;
+}
+const data veep = {"a", 0};
+strcpy(veep.name, "abc");//not allowed
+veep.accesses++;//allowed
+```
+### 名称空间
+两个名称空间的相同名称将不会导致冲突。
+
+## 多文件编译
+### 简要介绍和安装
+```
+完成C++项目的执行过程， 主要是分为四步: 预处理、编译、汇编、链接。g++命令确实可以对一个C++项目通过上面四步转成可执行文件，但在中大型项目里面，这样还是太复杂。 于是乎就有了MakeFile。
+Makefile 文件描述了 Linux 系统下 C/C++ 工程的编译规则，它用来自动化编译 C/C++ 项目。一旦写编写好 Makefile 文件，只需要一个 make 命令，整个工程就开始自动编译，不再需要手动执行 GCC 命令。
+CMake是简化MakeFile编写，可以自动生成MakeFile文件
+CMake是一个跨平台的编译(Build)工具，可以用简单的语句来描述所有平台的编译过程，其是在make基础上发展而来的，早期的make需要程序员写Makefile文件，进行编译，而现在CMake能够通过对cmakelists.txt的编辑，轻松实现对复杂工程的组织
+
+cmake编译流程：
+1. 编写Cmake配置文件CMakeLists.txt, 理解成Cmake所要处理的代码
+2. 执行命令 cmake path生成MakeFile, path是CmakeList.txt所在目录
+3. 使用make命令进行编译
+```
+安装cmake并查看版本：
+```
+sudo apt-get install cmake
+cmake --version
+```
+### 目录组织
++ 项目根目录下建立`build`文件夹并建立`CMakeLists.txt`文件（和.cpp和.h在一起，这里只是最简单的演示文件）
+    ```
+    cmake_minimum_required(VERSION 3.28)
+
+    # set the project name
+    project(main)
+
+    # add the executable
+    add_executable(main 1.cpp main.cpp)
+    ```
++ build文件夹内使用cmake生成makefile
+    ```
+    cmake ../.
+    ```
++ 编译项目
+    ```
+    make
+    ```
++ 执行程序
+    ```
+    ./main
+    ```
+![](微信截图_20250126175713.png)
+
+#### CMakeLists.txt
+这里面的大部分命令都是固定语法，相当于我们只需要指定一些参数即可。 先整理上面几个命令，如果有其他命令需要用到，可以[去官网查看具体使用](https://cmake.org/cmake/help/v2.8.8/cmake.html#section_Commands)（当然这个页面我觉得不会有人愿意看）
+
++ cmake_minimum_required命令
+  + `cmake_minimum_required(VERSION major[.minor[.patch[.tweak]]][FATAL_ERROR])`
+  + 用于指定需要的CMake 的最低版本
+  + 示例：`cmake_minimum_required(VERSION 3.28)`
++ project命令
+  + `project( [languageName1 languageName2 … ] )`
+  + 用于指定项目的名称，一般和项目的文件名称对应
+  + 示例：`project(main)`
++ add_executable命令
+  + `add_executable( [WIN32] [MACOSX_BUNDLE][EXCLUDE_FROM_ALL] source1 source2 … sourceN)`
+  + 用于指定从一组源文件 source1 source2 … sourceN 编译出一个可执行文件且命名为name
+  + 示例：`add_executable(main 1.cpp main.cpp)`
++ include_directories命令
+  + `include_directories([AFTER|BEFORE] [SYSTEM] dir1 dir2 …)`
+  + 用于设定目录，这些设定的目录将被编译器用来查找 include 文件
 
