@@ -18,7 +18,7 @@ tags:
 目前最新版本是2022，直接下载安装就能用，一切都已经准备好了
 
 ## 其他情况
-一些开源开发者朋友们得知我要学一遍c++，非常热情的想要教会我，并且建议我用vscode连接wsl在ubuntu虚拟机内使用clang/msvc开发（等我先学会再说）
+一些开源开发者朋友们得知我要学一遍c++，非常热情的想要教会我，并且建议我用vscode连接wsl在ubuntu虚拟机内使用clang/msvc开发
 
 # 基本语法
 ## 数据类型长度和范围
@@ -30,7 +30,6 @@ c++标准没用固定值的规定，但是有最小标准：
 
 可以通过`#include <climits>`获取具体范围：
 ```c++
-.
 #include <iostream>
 #include <climits>
 
@@ -285,7 +284,18 @@ strcpy(veep.name, "abc");//not allowed
 veep.accesses++;//allowed
 ```
 ### 名称空间
-两个名称空间的相同名称将不会导致冲突。
+两个名称空间的相同名称将不会导致冲突。下面的代码使用新的关键字`namespace`创建了一个新的名称空间：
+```c++
+namespace Triority{
+    int sth;
+    void func();
+}
+```
+名称空间可以是全局的也可以位于其他名称空间中，但是不能在代码块中。默认情况下其链接性为外部的（除非引用了常量）
+
+{% note danger modern %}
+标记一下，这一段我没写完，我要先去写cmake
+{% endnote %}
 
 ## 多文件编译
 ### 简要介绍和安装
@@ -348,4 +358,69 @@ cmake --version
 + include_directories命令
   + `include_directories([AFTER|BEFORE] [SYSTEM] dir1 dir2 …)`
   + 用于设定目录，这些设定的目录将被编译器用来查找 include 文件
+
+#### vscode自动生成CMakeLists.txt
+利用vscode中的cmaketools插件，可以自动生成cmakelist文件，例如需要include两个头文件生成就是这样：
+```
+cmake_minimum_required(VERSION 3.5.0)
+project(main VERSION 0.1.0 LANGUAGES C CXX)
+
+add_executable(main 1.cpp 2.cpp main.cpp)
+
+```
+在vscode安装`cmake`,`CMake Tools`,`Makefile Tools`三个插件，`Ctrl+shift+p`调出VSCode的指令面板，输入`cmake`，找到`cmake:quick start`，按照提示填写一个项目的名称，选择C++orC，选择构建库或者可执行文件，我这里只需要一个可执行文件，然后就会自动帮你生成一个CMakeLists
+
+
+## OOP：面向对象编程
+### 类的定义和使用
+`a_class.h`:
+```c++
+#include <string>
+
+class Stock{
+private:
+    std::string company;
+    long shares;
+    double share_val;
+    double total_val;
+    void set(){
+        total_val = shares * share_val;
+    }
+public:
+    void buy(std::string name, long num, double price);
+    void show();
+};
+```
+`a_class.cpp`:
+```c++
+#include <iostream>
+#include "a_class.h"
+
+void Stock::buy(std::string name, long num, double price){
+    company = name;
+    shares += num;
+    share_val = price;
+    set();
+}
+
+void Stock::show(){
+    std::cout << "Company:" << company << std::endl 
+        << "Shares:" << shares << std::endl
+        << "Share Price:" << share_val << std::endl 
+        << "Total Worth:" << total_val << std::endl;
+}
+```
+`main.cpp`
+```c++
+#include <iostream>
+#include "a_class.h"
+
+int main(){
+    using namespace std;
+    Stock triority;
+    triority.buy("Triority", 114514, 3.1415926);
+    triority.show();
+    return 0;
+}
+```
 
