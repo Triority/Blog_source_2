@@ -378,7 +378,7 @@ add_executable(main 1.cpp 2.cpp main.cpp)
 #include <string>
 
 class Stock{
-private:
+private://默认就是private，也可以不写这个关键字
     std::string company;
     long shares;
     double share_val;
@@ -387,8 +387,14 @@ private:
         total_val = shares * share_val;
     }
 public:
-    void buy(std::string name, long num, double price);
-    void show();
+    //构造函数用于初始化
+    Stock(const std::string & co, long n = 0, double pr = 0.0);
+    //成员函数
+    void buy(long num, double price);
+    //const成员函数，保证函数不会修改调用对象
+    void show() const;
+    //析构函数,一般不应显式调用，如果没用定义将隐式生成，用于完成清理工作，例如进行delate内存释放
+    ~Stock();
 };
 ```
 `a_class.cpp`:
@@ -396,18 +402,28 @@ public:
 #include <iostream>
 #include "a_class.h"
 
-void Stock::buy(std::string name, long num, double price){
-    company = name;
+void Stock::buy(long num, double price){
     shares += num;
     share_val = price;
     set();
 }
 
-void Stock::show(){
+void Stock::show() const {
     std::cout << "Company:" << company << std::endl 
         << "Shares:" << shares << std::endl
         << "Share Price:" << share_val << std::endl 
         << "Total Worth:" << total_val << std::endl;
+}
+
+Stock::Stock(const std::string & co, long n, double pr){
+    company = co;
+    shares = n;
+    share_val = pr;
+    set();
+}
+
+Stock::~Stock(){
+    std::cout << "DEL " << company << std::endl;
 }
 ```
 `main.cpp`
@@ -417,10 +433,54 @@ void Stock::show(){
 
 int main(){
     using namespace std;
-    Stock triority;
-    triority.buy("Triority", 114514, 3.1415926);
+    Stock triority("Triority");
+    triority.buy(114514, 3.1415926);
     triority.show();
     return 0;
 }
+
 ```
+
+如果要创建同一个类的多个对象，可以这样：
+```c++
+Stock stocks[4];
+stocks[0].show();
+```
+如果使用构造函数则必须这样：
+```c++
+Stock stocks[2] = {
+    Stock("a", 1.0, 1);
+    Stock("b", 1.0, 1);
+}
+```
+
+### this指针
+在 C++ 中，this指针是一个特殊的指针，它指向当前对象的实例。每一个对象都能通过this指针来访问自己的地址。可以在类的成员函数中使用，可以用来指向调用对象。
+
+当一个对象的成员函数被调用时，编译器会隐式地传递该对象的地址作为 this 指针。
+
+通过使用 this 指针，我们可以在成员函数中访问当前对象的成员变量，即使它们与函数参数或局部变量同名，这样可以避免命名冲突，并确保我们访问的是正确的变量
+
+```c++
+#include <iostream>
+ 
+class MyClass {
+private:
+    int value;
+public:
+    void setValue(int value) {
+        this->value = value;
+    }
+
+    void printValue() {
+        std::cout << "Value: " << this->value << std::endl;
+    }
+};
+
+```
+
+### 运算符重载
+
+
+
 
