@@ -371,7 +371,7 @@ add_executable(main 1.cpp 2.cpp main.cpp)
 在vscode安装`cmake`,`CMake Tools`,`Makefile Tools`三个插件，`Ctrl+shift+p`调出VSCode的指令面板，输入`cmake`，找到`cmake:quick start`，按照提示填写一个项目的名称，选择C++orC，选择构建库或者可执行文件，我这里只需要一个可执行文件，然后就会自动帮你生成一个CMakeLists
 
 
-## OOP：面向对象编程
+## OOP：面向对象
 ### 类的定义和使用
 `a_class.h`:
 ```c++
@@ -480,7 +480,73 @@ public:
 ```
 
 ### 运算符重载
+假设有一个Time类包含hours和minutes变量，求和的函数方法大概是这样
+`time.h`
+```c++
+Time Time::Sum(const Time & t) const;
+```
+`time.cpp`
+```c++
+Time Time::Sum(const Time & t) const{
+    Time sum;
+    sum.minutes = minutes + t.minutes;
+    sum.hours = hours + t.hours + sum.minutes/60
+    sum.minutes %= 60;
+    return sum;
+}
+```
+如果要使用加法运算符进行这个操作，只需要把`Sum()`的名称改为`operator+()`即可
+`time.h`
+```c++
+Time operator+(const Time & t) const;
+```
+`time.cpp`
+```c++
+Time operator+(const Time & t) const{
+    Time sum;
+    sum.minutes = minutes + t.minutes;
+    sum.hours = hours + t.hours + sum.minutes/60
+    sum.minutes %= 60;
+    return sum;
+}
+```
+此后计算时间总和就可以直接用`+`了
+```c++
+time_total = time_1 + time_2;
+```
 
+重载的使用有一些限制：
++ 重载后必须至少有一个操作数是用户定义的类型，避免用户为标准类型重载，比如重载`-`符号为求和
++ 不能修改运算符优先级
++ 重载不能违反原来的句法规则，比如将求模`%`重载成只用一个操作数
++ 不能创建新的运算符
++ 一些不能重载的运算符：`sizeof`等（懒得全写一遍了，这玩意估计八百年用不到一次）
 
+### 友元
+类对象的公有类发布方法是访问对象私有部分的唯一途径，但是这种限制有时候过于严格，因此提供了友元的概念，包括友元函数，友元类，友元成员函数。通过让函数成为类的友元可以赋予函数与类的成员函数相同的访问权限
 
+在刚才的例子中可以实现时间的加法，那如果是乘法呢？由于运算符左侧是操作数，我们只能`A = B * double`而不能`A = double * B`，因为这个`double`不是对象。另一种解决方式就是使用友元
+
+创建友元函数只要将其原型放在类声明中，并在前面加上`friend`关键字
+```c++
+friend Time operator*(double m, const Time & t);
+```
+显然这个函数在类声明中调用但是不是成员函数，但是拥有成员函数一样的访问权限
+
+因为他不是成员函数，所以编写定义时不要使用`Time::`限定符，也不要使用关键字`friend`，应该这样：
+```c++
+Time operator*(double m, const Time & t){
+    Time result;
+    long totalminutes = t.hours *m * 60 + t.minutes * m;
+    result.hours = totalminutes / 60;
+    result.minutes = totalminutes % 60;
+    return result;
+}
+```
+有了这些声明和定义之后，就可以使用这一语句了：
+```c++
+Time_A = 2.75 * Time_B
+```
+
+### 类的自动转换和强制类型转换
 
