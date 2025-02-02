@@ -595,5 +595,76 @@ int a_int = aclass;
 这部分内容可能比较难懂，需要一些举例才能完全理解，但是我现在又懒得在这补充一大堆代码作为举例，因此这件事交给未来的自己吧。在此之前可以直接阅读原书的P356
 
 ### 类的继承
+假设已经有了下面这个类（由前面的例子删减而来）
+`1.h`:
+```c++
+#include <string>
+
+class Stock{
+private:
+    std::string company;
+    long shares;
+public:
+    Stock(const std::string & co, long n = 0);
+    void show() const;
+    ~Stock();
+};
+```
+`1.cpp`:
+```c++
+#include <iostream>
+#include "1.h"
+
+void Stock::show()const{
+    std::cout << "Company:" << company << std::endl 
+        << "Shares:" << shares << std::endl;
+}
+
+Stock::Stock(const std::string & co, long n){
+    company = co;
+    shares = n;
+}
+
+Stock::~Stock(){
+    std::cout << "DEL " << company << std::endl;
+}
+```
+我现在想要让这个类新增一个`id`成员，但是不想改动已有的代码（甚至可能没有源代码），那么可以直接派生出一个类：
+`2.h`:
+```c++
+#include "1.h"
+class Stock_id : public Stock{
+private:
+    long id;
+public:
+    Stock_id(long i, std::string co, long n = 0);
+    void show_id() const;
+};
+```
+`2.cpp`:
+```c++
+#include <iostream>
+#include "2.h"
+
+void Stock_id::show_id() const {
+    std::cout << "id:" << id << std::endl;
+    Stock_id::show();
+}
+
+Stock_id::Stock_id(long i, std::string co, long n) : Stock(co, n){
+    id = i;
+}
+```
+派生类需要自己的构造函数，也可以添加额外的数据成员和成员函数
+
+但是注意不能直接访问基类的私有成员而必须通过基类方法进行访问，也就是说，`private`只能这个类自己访问，`protected`允许自己和派生类访问，`public`允许全部访问
+
+派生类继承了所有的基类方法，但下列情况除外：基类的构造函数、析构函数和拷贝构造函数，基类的重载运算符，基类的友元函数。
+
+### 多态继承
+
+### 友元类
+
+## 异常
 
 
