@@ -688,13 +688,75 @@ int main(){
     }
 }
 ```
-使用`try`捕获异常，然后在`catch()`中对异常进行处理，
+使用`try`捕获异常，然后在`catch()`中对异常进行处理。（异常是新增的内容，一些老式编译器可能不支持）
+
+```
+triority@Triority-Desktop:~/c++l/build$ /home/triority/c++l/build/main
+Enter 2 nums:114 514
+x / y is:0.22179
+Enter 2 nums:114514 0
+y = 0 is not allowed!
+Enter 2 nums:^C
+```
 
 {% note danger modern %}
 这一部分原来书上的代码`catch (char* str)`运行会报错`terminate called after throwing an instance of 'char const*'`，这里是我改正且简化的版本。
 原因是应该捕获const异常`catch (const char const* strException)`，[参考链接](https://stackoverflow.com/questions/24458563/throwing-exceptions-error-terminate-called)中还讨论了更加规范的错误处理方法和其他"style note: This tutorial smells, maybe you should find another source."😨😨😨
 {% endnote %}
 
+想让`catch`块能够处理`try`块抛出的任何类型的异常，则必须在异常声明的括号内使用省略号`...`：
+```c++
+try{
+}catch(...){
+    // 能处理任何异常的代码
+}
+```
+或者可以连续使用`catch`来分别处理多种异常：
+```c++
+try{
+}catch(exc_a){
+}catch(exc_b){
+}
+```
+
+通常引发异常的函数会传递一个对象，从而可以使用不同的异常类型来区分不同函数在不同情况下引发的异常。对象也可以携带可以确定异常原因的信息。C++提供了一系列标准的异常，定义在`<exception>`中，我们可以在程序中使用这些标准的异常，或者通过继承和重载`exception`类来定义新的异常
+
+```c++
+#include <iostream>
+#include <exception>
+
+using namespace std;
+ 
+struct MyException : public exception
+{
+  const char * what () const throw ()
+  {
+    return "C++ Exception";
+  }
+};
+ 
+int main()
+{
+  try
+  {
+    throw MyException();
+  }
+  catch(MyException& e)
+  {
+    std::cout << e.what() << std::endl;
+  }
+  catch(std::exception& e)
+  {
+    //其他的错误
+  }
+}
+```
+
+## string类和STL标准模板库
+
+
+
+## 文件IO
 
 
 
