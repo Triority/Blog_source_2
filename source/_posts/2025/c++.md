@@ -752,7 +752,66 @@ int main()
 }
 ```
 
-## string类和STL标准模板库
+## 常用的类和模板：string类,智能指针,STL标准模板库
+### string
+
+
+
+
+### 智能指针
+使用`new`分配内存时别忘了要`delete`释放内存，但是别忘了这件事总是不可靠的。如果指针是一个对象就可以在过期时调用析构函数释放内存该有多好，这就是智能指针对象。
+
+在C++11及之后的版本中，最常见的智能指针类型包括`std::unique_ptr`、`std::shared_ptr`和`std::weak_ptr`。
++ `std::unique_ptr`提供了独占所有权的语义，确保同一时间内只有一个智能指针指向特定的资源。在`std::unique_ptr`的生命周期结束时，它会自动释放所拥有的资源，无需程序员手动干预。
++ `std::shared_ptr`实现了共享所有权模型，允许多个智能指针共同拥有对同一资源的引用。这种模型通过引用计数来实现，每当一个新的`std::shared_ptr`被创建并指向同一资源时，引用计数会增加；当`std::shared_ptr`被销毁时，引用计数减少。只有当引用计数降至零时，资源才会被释放。`std::shared_ptr`的使用也带来了循环引用的问题，这时
++ `std::weak_ptr`提供了一种不控制对象生命周期的智能指针，它指向由`std::shared_ptr`管理的对象，但不增加引用计数。这允许程序员访问资源，同时避免循环引用导致的内存泄漏。
+
+```c++
+#include <iostream>
+#include <string>
+#include <memory>
+
+class Report{
+private:
+    std::string str;
+public:
+    Report(const std::string s) : str(s){
+        std::cout << "Object created!" << std::endl;
+    }
+    ~Report(){
+        std::cout << "Object deleted!" << std::endl;
+    }
+    void comment() const {
+        std::cout << str << std::endl;
+    }
+};
+
+int main(){
+    std::unique_ptr<Report> ps (new Report("using unique_ptr"));
+    ps -> comment();
+}
+```
+
+```
+triority@Triority-Desktop:~/c++l/build$ /home/triority/c++l/build/main
+Object created!
+using unique_ptr
+Object deleted!
+```
+
+### STL标准模板库
+> C++ 标准模板库（Standard Template Library，STL）是一套功能强大的 C++ 模板类和函数的集合，它提供了一系列通用的、可复用的算法和数据结构。
+>
+> STL 的设计基于泛型编程，这意味着使用模板可以编写出独立于任何特定数据类型的代码。
+
+C++ 标准模板库的核心包括以下重要组件组件：
++ 容器（Containers）：容器是 STL 中最基本的组件之一，提供了各种数据结构，包括向量（vector）、链表（list）、队列（queue）、栈（stack）、集合（set）、映射（map）等。这些容器具有不同的特性和用途，可以根据实际需求选择合适的容器。
++ 算法（Algorithms）：STL 提供了大量的算法，用于对容器中的元素进行各种操作，包括排序、搜索、复制、移动、变换等。这些算法在使用时不需要关心容器的具体类型，只需要指定要操作的范围即可。
++ 迭代器（iterators）：迭代器用于遍历容器中的元素，允许以统一的方式访问容器中的元素，而不用关心容器的内部实现细节。STL 提供了多种类型的迭代器，包括随机访问迭代器、双向迭代器、前向迭代器和输入输出迭代器等。
++ 函数对象（Function Objects）：函数对象是可以像函数一样调用的对象，可以用于算法中的各种操作。STL 提供了多种函数对象，包括一元函数对象、二元函数对象、谓词等，可以满足不同的需求。
++ 适配器（Adapters）：适配器用于将一种容器或迭代器适配成另一种容器或迭代器，以满足特定的需求。STL 提供了多种适配器，包括栈适配器（stack adapter）、队列适配器（queue adapter）和优先队列适配器（priority queue adapter）等。
+
+#### 矢量vector模板类
 
 
 
