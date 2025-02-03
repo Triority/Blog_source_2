@@ -293,9 +293,9 @@ namespace Triority{
 ```
 名称空间可以是全局的也可以位于其他名称空间中，但是不能在代码块中。默认情况下其链接性为外部的（除非引用了常量）
 
-{% note danger modern %}
+
 标记一下，这一段我没写完，我要先去写cmake
-{% endnote %}
+
 
 ## 多文件编译
 ### 简要介绍和安装
@@ -666,5 +666,35 @@ Stock_id::Stock_id(long i, std::string co, long n) : Stock(co, n){
 ### 友元类
 
 ## 异常
+
+```c++
+#include <iostream>
+
+int main(){
+    double x,y,z;
+    while(true){
+        std::cout << "Enter 2 nums:";
+        std::cin >> x >> y;
+        try{
+            if(y==0){
+                throw "y = 0 is not allowed!";
+            }
+        }catch(const char * s){
+            std::cout << s << std::endl;
+            continue;
+        }
+        z = x/y;
+        std::cout << "x / y is:" << z << std::endl;
+    }
+}
+```
+使用`try`捕获异常，然后在`catch()`中对异常进行处理，
+
+{% note danger modern %}
+这一部分原来书上的代码`catch (char* str)`运行会报错`terminate called after throwing an instance of 'char const*'`，这里是我改正且简化的版本。
+原因是应该捕获const异常`catch (const char const* strException)`，[参考链接](https://stackoverflow.com/questions/24458563/throwing-exceptions-error-terminate-called)中还讨论了更加规范的错误处理方法和其他"style note: This tutorial smells, maybe you should find another source."😨😨😨
+{% endnote %}
+
+
 
 
