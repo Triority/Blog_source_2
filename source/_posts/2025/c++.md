@@ -812,8 +812,51 @@ C++ 标准模板库的核心包括以下重要组件组件：
 + 适配器（Adapters）：适配器用于将一种容器或迭代器适配成另一种容器或迭代器，以满足特定的需求。STL 提供了多种适配器，包括栈适配器（stack adapter）、队列适配器（queue adapter）和优先队列适配器（priority queue adapter）等。
 
 #### 矢量vector模板类
+```c++
+#include <iostream>
+#include <vector>
+
+int main() {
+    // 创建一个空的整数向量
+    std::vector<int> myVector;
+    // 添加元素到向量中
+    myVector.push_back(3);
+    myVector.push_back(7);
+    myVector.push_back(11);
+    // 访问向量中的元素
+    std::cout << "Elements in the vector: ";
+    for (int element : myVector)std::cout << element << " ";
+    std::cout << std::endl;
+    // 访问向量中的第一个元素myVector[0]
+    std::cout << "First element: " << myVector[0] << std::endl;
+    // 获取向量的大小myVector.size()
+    std::cout << "Size of the vector: " << myVector.size() << std::endl;
+    // 定义一个迭代器，也可以使用auto语法
+    // auto pd = myVector.begin();
+    std::vector<int>::iterator pd = myVector.begin();
+    // 删除向量中的第2个元素，迭代器的行为和指针很相似，erase函数也可以接受两个迭代器参数进行[区间)删除
+    myVector.erase(++pd);
+    // 输出删除元素后的向量
+    std::cout << "Elements in the vector after erasing: ";
+    for (int element : myVector)std::cout << element << " ";
+    std::cout << std::endl;
+    //除此以外还有insert()等其他方法，不再单独举例，insert接受三个迭代器参数，插入位置，要插入的容器对象的起始和结束位置
+    // 清空向量
+    myVector.clear();
+    std::cout << "Size of the vector after clearing: " << myVector.size() << std::endl;
+
+    return 0;
+}
+```
+#### 基于范围的循环和迭代器
+这段内容作为一些补充，考虑到前面没有提到循环这些语法
+
+基于范围的for循环就是为了用于STL而设计的，上面的写法`for (int element : myVector){};`就是遍历整个容器的内容，方便一点可以使用`auto`语法`for (auto x : myVector) do_something(x);`，使用引用参数也可以在遍历的同时修改元素内容`for (auto & x : myVector) do_something(x);`
+
+STL规定了5种迭代器，
 
 
+#### 关联容器
 
 ## 文件IO
 
