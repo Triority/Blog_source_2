@@ -811,7 +811,7 @@ C++ 标准模板库的核心包括以下重要组件组件：
 + 函数对象（Function Objects）：函数对象是可以像函数一样调用的对象，可以用于算法中的各种操作。STL 提供了多种函数对象，包括一元函数对象、二元函数对象、谓词等，可以满足不同的需求。
 + 适配器（Adapters）：适配器用于将一种容器或迭代器适配成另一种容器或迭代器，以满足特定的需求。STL 提供了多种适配器，包括栈适配器（stack adapter）、队列适配器（queue adapter）和优先队列适配器（priority queue adapter）等。
 
-#### 矢量vector模板类
+#### 容器矢量vector
 ```c++
 #include <iostream>
 #include <vector>
@@ -879,14 +879,47 @@ STL规定了5种迭代器：
 关联容器可以快速查找、读取或者删除所存储的元素，同时该类型的容器插入元素的效率比序列容器高。
 
 STL提供了4种关联容器：
-+ `set`：关键字即值，即只保存关键字的容器。可以认为，set就是一个集合，用来存储同类型的元素
++ `set`：关键字即值，即只保存关键字的容器。set类似一个集合，用来存储同类型的元素
 + `multiset`：关键字可重复出现的set
 + `map`：元素是一些键值对：关键字起到索引的作用，值则表示与索引相关联的数据，数据的存放是有序的
 + `multimap`：关键字可以重复出现的map
 
+> C++ 11 还新增了 4 种哈希容器,即`unordered_map`、`unordered_multimap`以及`unordered_set`、`unordered_multiset`。严格来说,它们也属于关联式容器。哈希容器底层采用的是哈希表。
 
+这里以`map`为例简单介绍部分用法：
+```c++
+#include <iostream>
+#include <map>
+#include <string>
 
-## 文件IO
+int main() {
+    //创建空 map 容器，默认根据个键值对中键的值，对键值对做降序排序
+    std::map<std::string, std::string, std::greater<std::string>>myMap{ {"d","4"} };
+    //向 map 容器添加新键值对
+    myMap["a"] = "1";
+    myMap["b"] = "2";
+    myMap["c"] = "3";
+    //输出当前 myMap 容器存储键值对的个数
+    std::cout << "myMap size==" << myMap.size() << std::endl;
+    //判断当前 myMap 容器是否为空
+    if (!myMap.empty()) {
+        //借助 myMap 容器迭代器，将该容器的键值对逐个输出
+        for (auto i = myMap.begin(); i != myMap.end(); ++i)std::cout << i->first << " " << i->second << endl;
+    }  
+    return 0;
+}
+```
+```
+triority@Triority-Desktop:~/c++l/build$ /home/triority/c++l/build/main
+myMap size==4
+d 4
+c 3
+b 2
+a 1
+```
 
+## 书上内容的结束
+原书最后两章节继续介绍了c++的IO操作和c++11新内容总结，这部分内容我认为完全没有必要单独写出来，内容又多又杂但是没有难度，用的时候上网查便是。如果我的这篇文章接着写下去我认为应该写一些应用功能了，例如并发编程或者opencv这些标准外的库的使用，这部分内容就交给未来勤奋的自己了
 
+# 继续深造（？）
 
