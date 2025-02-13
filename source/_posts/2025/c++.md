@@ -924,4 +924,72 @@ a 1
 如果我的这篇文章接着写下去我认为应该写一些应用功能了，例如并发编程或者opencv这些标准外的库的使用，这部分内容就交给未来勤奋的自己咯！ ~~是某个勤奋的面壁者吗？~~
 
 # 继续深造
+## opencv
+opencv的使用教程文章早已经写过，这里只写c++下需要进行的内容
 
+OpenCV的功能被组织成多个模块，每个模块专注于不同的任务：
+
++ `Core`：提供基本数据结构和函数，如图像存储、矩阵操作、文件 I/O 等。
++ `Imgproc`：图像处理功能，包括滤波、几何变换、颜色空间转换、边缘检测、形态学操作等。
++ `Highgui`：图像和视频的显示、窗口管理、用户交互（如鼠标事件、滑动条）。
++ `Video`：视频处理功能，包括视频捕获、背景减除、光流计算等。
++ `Calib3d`：相机标定、3D 重建、姿态估计等。
++ `Features2d`：特征检测与描述，包括关键点检测、特征匹配等。
++ `Objdetect`：目标检测功能，如 Haar 级联检测、HOG 检测等。
++ `DNN`：深度学习模型的加载和推理，支持 TensorFlow、PyTorch、Caffe 等框架。
++ `ML`：机器学习算法，如 KNN、SVM、决策树等。
++ `Flann`：快速近似最近邻搜索（FLANN），用于特征匹配和高维数据搜索。
++ `Photo`：图像修复、去噪、HDR 成像等。
++ `Stitching`：图像拼接功能，用于创建全景图。
++ `Shape`：形状分析和匹配。
++ `Tracking`：目标跟踪算法，如 MIL、KCF、GOTURN 等。
+
+### 安装和编译配置
+```
+sudo apt-get install libopencv-dev
+```
+然后是编译配置`CMakeLists.txt`：
+```
+cmake_minimum_required(VERSION 3.16.3)
+
+# set the project name
+project(main)
+
+find_package(OpenCV REQUIRED)
+
+#about opencv output(Optional)
+message(STATUS "Opnecv library status: ")
+message(STATUS "> version: ${OpenCV_VERSION} ")
+message(STATUS "> libraries: ${OpenCV_LIBS} ")
+message(STATUS "> include: ${OpenCV_INCLUDE_DIRS}  ")
+
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+# add the executable
+add_executable(main 1.cpp main.cpp)
+
+target_link_libraries(main ${OpenCV_LIBS})
+
+```
+关于上面新增的内容做一些解释：
++ `find_package`：CMake 本身不提供任何关于搜索库的便捷方法，也不会对库本身的环境变量进行设置。它仅仅是按照优先级顺序在指定的搜索路径进行查找 Findxxx.cmake 文件和xxxConfig.cmake文件(其中xxx代表库的名字，特别注意的是有大小写之分)，这两个文件大体上是没有区别的，CMake 能够找到这两个文件中的任何一个，我们都能成功使用该库。
++ `include_directories`：将指定目录添加到编译器的头文件搜索路径之下，指定的目录被解释成当前源码路径的相对路径
++ `target_link_libraries`：该指令的作用为将目标文件与库文件进行链接
+
+### 使用
+下面这个程序调用`wget`命令下载网站的图标（这一步是吃饱了撑的）然后显示图片
+```c++
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <stdlib.h>
+
+int main(){
+    system("wget https://www.triority.cc/img/favicon.png");
+    char imageName[] = "favicon.png";
+    cv::Mat M = cv::imread(imageName, cv::IMREAD_COLOR);
+    cv::imshow("image", M);
+    cv::waitKey();
+    return 0;
+}
+  
+```
