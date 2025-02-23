@@ -73,3 +73,67 @@ done
 ```
 catkin_create_pkg lab roscpp rospy std_msgs
 ```
+
+## 硬件测试：intel realsense depth camera D435i
+
+### wsl挂载usb设备
+使用usb3.2连接电脑，要在wsl中使用usb设备请参考[微软的文档](https://learn.microsoft.com/zh-cn/windows/wsl/connect-usb)。
+
+首先安装[USBIPD-WIN项目](https://github.com/dorssel/usbipd-win/releases)
+
+在windows powershell中使用`usbipd list`查看usb设备列表，然后根据总线ID共享设备`usbipd bind --busid 4-4`
+```
+PS C:\Users\Triority> usbipd list
+Connected:
+BUSID  VID:PID    DEVICE                                                        STATE
+1-2    1462:7d42  USB 输入设备                                                  Not shared
+1-5    1ea7:0064  USB 输入设备                                                  Not shared
+1-6    1a2c:9ef4  USB 输入设备                                                  Not shared
+1-14   8087:0026  英特尔(R) 无线 Bluetooth(R)                                   Not shared
+2-1    8086:0b3a  Intel(R) RealSense(TM) Depth Camera 435i Depth, Intel(R) ...  Not shared
+
+Persisted:
+GUID                                  DEVICE
+
+```
+接下来应该附加USB设备`usbipd attach --wsl --busid 2-1`，但是报错：
+```
+PS C:\Users\Triority> usbipd attach --wsl --busid 2-1
+usbipd: info: Using WSL distribution 'Ubuntu-20.04' to attach; the device will be available in all WSL 2 distributions.
+usbipd: info: Detected networking mode 'virtioproxy'.
+usbipd: error: Networking mode 'virtioproxy' is not supported.
+```
+显然需要修改网络模式，这里改成`mirrored`，这个模式的作用在[微软的文档有介绍](https://learn.microsoft.com/en-us/windows/wsl/networking#mirrored-mode-networking)
+
+也就是配置文件`.wslconfig`内容为
+```
+[wsl2]
+networkingMode=mirrored
+```
+此时将wsl重启`wsl --shutdown`
+```
+PS C:\Users\Triority> usbipd attach --wsl --busid 2-1
+usbipd: info: Using WSL distribution 'Ubuntu-20.04' to attach; the device will be available in all WSL 2 distributions.
+usbipd: info: Detected networking mode 'mirrored'.
+usbipd: info: Using IP address 127.0.0.1 to reach the host.
+WSL usbip: error: Attach Request for 2-1 failed - Device busy (exported)
+usbipd: warning: The device appears to be used by Windows; stop the software using the device, or bind the device using the '--force' option.
+usbipd: error: Failed to attach device with busid '2-1'.
+```
+按照要求强制执行`usbipd bind --busid 2-1 --force`并重启电脑
+
+此时重新`usbipd attach --wsl --busid 2-1`并在ubuntu中查看usb设备
+```
+triority@Triority-Desktop:~$ lsusb
+Bus 002 Device 002: ID 8086:0b3a Intel Corp. Intel(R) RealSense(TM) Depth Camera 435i
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+```
+
+### 开发环境
+Intel D435i相关链接：
++ [商品页面](https://www.intelrealsense.com/depth-camera-d435i/)
++ [datasheet](https://www.intelrealsense.com/download/21345/?tmstv=1697035582)
++ [SDK](https://github.com/IntelRealSense/librealsense/releases)
++ [ros1使用](https://github.com/IntelRealSense/realsense-ros/tree/ros1-legacy)
+
