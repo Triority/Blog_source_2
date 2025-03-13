@@ -512,3 +512,104 @@ TIM_SetCompare1(TIM2, Compare);
 #### TIM输入捕获
 
 ### 串口通讯
+
+
+# 使用cubemx自动配置
+## 工程基本配置：以stm32f103c8t6为例
++ 设置外置时钟源和串口调试：
+![](微信截图_20250313164315.png)
+![](微信截图_20250313164341.png)
+
++ 时钟源选择外置8MHz和32.768MHz，时钟树如下：
+![](微信截图_20250313164144.png)
+
++ 修改工程名称IDE代码输出内容等：
+![](微信截图_20250313164238.png)
+![](微信截图_20250313164407.png)
+
+## 点灯：定时器中断闪烁
+这里使用TIM3触发中断然后反转PC13电平
+
+![](微信截图_20250313164915.png)
+![](微信截图_20250313164930.png)
+
+cubemx中设置TIM3的PSC为7199，72M时钟频率分频到10kHz，然后ARR设置为9999即为每秒中断1次，生成工程后在`main.c`底部添加中断函数：
+
+```c
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) // 该函数在 stm32f1xx_hal_tim.c 中定义为弱函数(__weak)，由用户再定义
+{
+	  if(htim == &htim3)
+	 {
+	    HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+	 }
+}
+```
+编译下载即可看到PC13指示灯闪烁
+
+## 点灯：输出PWM
+使用TIM2的Channel1，配置如下：
+![](微信截图_20250313210740.png)
+
+72Mhz的时钟不分频，ARR设置为999即为频率72kHz，CH1的Pluse为100，因此占空比为10%
+
+然后在main()函数中启动输出
+```c
+HAL_TIM_PWM_Start (&htim2,TIM_CHANNEL_1);
+```
+
+即可看到示波器显示：
+![](28f592eeb806da33ccad2bbe17cba7e.jpg)
+
+## oled显示
+这里使用了[ssd1306驱动库](https://controllerstech.com/oled-display-using-i2c-stm32/)
+
+cubemx配置i2c1，使用fastmode：
+![](微信截图_20250313165953.png)
+
+然后在keil添加如下文件：
+[fonts.c](fonts.c)
+
+[fonts.h](fonts.h)
+
+[ssd1306.c](ssd1306.c)
+
+[ssd1306.h](ssd1306.h)
+
+在main.c的while(1)之前添加：
+```c
+  SSD1306_Init (); // initialise the display 
+  SSD1306_GotoXY (0,0); // goto 10, 10 
+  SSD1306_Puts ("HELLO WORLD !!", &Font_11x18, 1); 
+  SSD1306_UpdateScreen(); // update screen
+```
+即可看到
+![](a45bc23741268296768adc5bec8c950.jpg)
+
+下面的代码将会显示数字并每秒加一
+```c
+  SSD1306_Init ();
+  int num = 1;
+  char bufnum[7];
+  
+  while (1)
+  {
+	  sprintf (bufnum, "%d", num);
+	  SSD1306_GotoXY (0,0);
+	  SSD1306_Puts (bufnum, &Font_11x18, 1);
+      SSD1306_UpdateScreen();
+	  Delay_ms(1000);
+	  num++;
+
+  }
+```
+缩短delay时间估计实际刷新用时大约25ms，因此这个读秒并不准确，应该用定时器中断来计算num
+
+## 串口通讯（DMA）
+```c
+  unsigned char s_buf[]="hello world\r\n";
+  HAL_UART_Transmit_DMA(&huart1,s_buf,sizeof(s_buf));
+```
+
+## ADC
+
+
