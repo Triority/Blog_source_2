@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2 # 拉取仓库代码
       - uses: actions/setup-node@v2 # 设置 node.js 环境
       - name: Cache node_modules # 缓存 node_modules，提高编译速度，毕竟每月只有 2000 分钟。
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
