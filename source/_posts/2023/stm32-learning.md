@@ -700,11 +700,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   }
 ```
 
-## 串口通讯（DMA）
-```c
-  unsigned char s_buf[]="hello world\r\n";
-  HAL_UART_Transmit_DMA(&huart1,s_buf,sizeof(s_buf));
-```
+## 串口通讯
+
 
 ## 读取传感器数据
 
