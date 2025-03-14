@@ -628,15 +628,39 @@ cubemx配置i2c1，使用fastmode：
 设置nvic开启中断
 ![](微信截图_20250314161453.png)
 
-生成代码后添加中断触发的回调函数：
+生成代码后添加中断触发的回调函数。下面代码实现内容是按键消抖，使用TIM3定时器100ms一次中断计时从而避免阻塞
 ```c
+/* USER CODE BEGIN 4 */
+uint32_t running_time = 0;
+uint32_t key_time_last = 0;
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	  if(htim == &htim3)
+	 {
+     HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	   running_time++;
+	 }
+}
 
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if( GPIO_Pin == GPIO_PIN_5)
+	{
+    if(running_time-key_time_last>2){
+      HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_4);
+      key_time_last=running_time;
+    }
+	}
+}
+
+/* USER CODE END 4 */
 ```
 
 注意：如果在中断中使用了`HAL_GetTick()`和`HAL_Delay()`这类函数，要调整中断优先级，否则会在GPIO中卡死，GPIO中断优先级要比`Time base`的要低，也就是`Preemption Priority`更大
 
 ## ADC（DMA）
-在cubemx中配置ADC1，并开启DMA。这里我开启了10个通道的循环扫描输入，DNA设置为自动连续转运
+在cubemx中配置ADC1，并开启DMA。这里我开启了10个通道的循环扫描输入，DNA设置为自动连续转运，内存地址自增
 ![](微信截图_20250314194249.png)
 ![](微信截图_20250314194301.png)
 
