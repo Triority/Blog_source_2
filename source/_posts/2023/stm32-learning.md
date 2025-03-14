@@ -513,6 +513,16 @@ TIM_SetCompare1(TIM2, Compare);
 
 ### 串口通讯
 
+# keil调试
+使用st-link连接上stm32后，点击这个按钮，进入调试模式
+![](微信截图_20250314160335.png)
+
+![](ad4ff3cb059848284ddebd78c6279b4.png)
+
+代码窗口左侧灰色区域可以设置断点，左上角可以设置单步运行等功能。
+
+如果需要查看变量的值需要打开`View > Watch Windows > watch 1`，即可输入变量名查看变量的实时值（注意必须是全局变量）
+
 
 # 使用cubemx自动配置
 ## 工程基本配置：以stm32f103c8t6为例
@@ -533,7 +543,11 @@ TIM_SetCompare1(TIM2, Compare);
 ![](微信截图_20250313164915.png)
 ![](微信截图_20250313164930.png)
 
-cubemx中设置TIM3的PSC为7199，72M时钟频率分频到10kHz，然后ARR设置为9999即为每秒中断1次，生成工程后在`main.c`底部添加中断函数：
+cubemx中设置TIM3的PSC为7199，72M时钟频率分频到10kHz，然后ARR设置为9999即为每秒中断1次，生成工程后在`main.c`添加定时器开启和中断函数：
+
+```c
+HAL_TIM_Base_Start_IT(&htim3);
+```
 
 ```c
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) // 该函数在 stm32f1xx_hal_tim.c 中定义为弱函数(__weak)，由用户再定义
@@ -596,7 +610,7 @@ cubemx配置i2c1，使用fastmode：
 	  sprintf (bufnum, "%d", num);
 	  SSD1306_GotoXY (0,0);
 	  SSD1306_Puts (bufnum, &Font_11x18, 1);
-      SSD1306_UpdateScreen();
+    SSD1306_UpdateScreen();
 	  Delay_ms(1000);
 	  num++;
 
@@ -604,12 +618,69 @@ cubemx配置i2c1，使用fastmode：
 ```
 缩短delay时间估计实际刷新用时大约25ms，因此这个读秒并不准确，应该用定时器中断来计算num
 
+## GPIO输入中断
+首先设置中断引脚
+![](微信截图_20250314161413.png)
+
+设置触发模式和内部上下拉
+![](微信截图_20250314161442.png)
+
+设置nvic开启中断
+![](微信截图_20250314161453.png)
+
+生成代码后添加中断触发的回调函数：
+```c
+
+```
+
+注意：如果在中断中使用了`HAL_GetTick()`和`HAL_Delay()`这类函数，要调整中断优先级，否则会在GPIO中卡死，GPIO中断优先级要比`Time base`的要低，也就是`Preemption Priority`更大
+
+## ADC（DMA）
+在cubemx中配置ADC1，并开启DMA。这里我开启了10个通道的循环扫描输入，DNA设置为自动连续转运
+![](微信截图_20250314194249.png)
+![](微信截图_20250314194301.png)
+
+使用DMA转运到内存的100位数组，然后取平均值（只读了两个通道）然后在屏幕显示
+```c
+  uint32_t ADC_Value[100];
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&ADC_Value, 100);
+  uint32_t ad1,ad2;
+  uint8_t i;
+  
+  SSD1306_Init ();
+  char bufnum[12];
+  
+  
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    for(i = 0,ad1 =0,ad2=0; i < 100;i+=10){
+      ad1 += ADC_Value[i];
+      ad2 += ADC_Value[i+1];
+    }
+    ad1 /= 10;
+    ad2 /= 10;
+    sprintf (bufnum, "%04d", ad1);
+	  SSD1306_GotoXY (0,0);
+	  SSD1306_Puts (bufnum, &Font_11x18, 1);
+    sprintf (bufnum, "%04d", ad2);
+	  SSD1306_GotoXY (0,20);
+	  SSD1306_Puts (bufnum, &Font_11x18, 1);
+    SSD1306_UpdateScreen();
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
+```
+
 ## 串口通讯（DMA）
 ```c
   unsigned char s_buf[]="hello world\r\n";
   HAL_UART_Transmit_DMA(&huart1,s_buf,sizeof(s_buf));
 ```
 
-## ADC
-
+## 读取传感器数据
 
