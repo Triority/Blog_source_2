@@ -701,7 +701,56 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 ```
 
 ## 串口通讯
+### 串口发送(中断)
+在cubemx配置串口参数后即可使用下面的HAL库函数直接发送串口数据
+```c
+    uint8_t data[] = "Hello, UART!";
+    HAL_UART_Transmit(&huart1, data, sizeof(data) - 1, 1000);
+```
+### 串口接收(中断)
+首先定义中断回调处理函数，这里函数的内容是将发来的内容发回去
 
+注意下面这种方式每次最多发送6个字符，否则每第七个字符会被丢弃
+```c
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART1)
+    {
+        // 处理接收到的数据
+        HAL_UART_Transmit(&huart1, &rxData, 1, 1000);
+        HAL_UART_Transmit(&huart1, &rxData, sizeof(rxData) - 1, 1000);
 
-## 读取传感器数据
+        // 重新启用中断接收
+        HAL_UART_Receive_IT(&huart1, &rxData, 1);
+    }
+}
+```
+然后在main()函数进入while(1)循环之前开启接收
+```c
+HAL_UART_Receive_IT(&huart1, &rxData, 1);
+```
+以及别忘了最开始定义一个存储数据的全局变量
+```c
+uint8_t rxData;
+```
+### 串口发送(DMA)
 
+### 串口接收(DMA)
+
+### 串口接收数据解析存储
+
+## 通过i2c读取传感器数据
+### mpu6050示例
+这部分内容参考了[这篇文章](https://controllerstech.com/how-to-interface-mpu6050-gy-521-with-stm32/)，对里面一些内容做了一些小的修改和解释
+
++ 关于mpu6050的地址
+
+  值取决于引脚 AD0。该引脚位于传感器的分线板上接入 GND。这意味着设备的7位Slave地址为`0x68`。但是我们需要为 STM32 HAL 提供 8 位地址，因此我们将这个 7 位地址向左移动 1 位，`0x68<<1 = 0xD0`。如果AD0接入高电平，那么地址将会是`0x69`
+
++ 初始化mpu6050
+  
+  首先通过读取 `WHO_AM_I` （`0x75`）寄存器来检查传感器是否响应。如果传感器响应 `0x68`，则意味着通信正常
+  ```c
+
+  ```
+  
