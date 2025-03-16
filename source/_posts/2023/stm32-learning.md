@@ -748,9 +748,44 @@ uint8_t rxData;
   值取决于引脚 AD0。该引脚位于传感器的分线板上接入 GND。这意味着设备的7位Slave地址为`0x68`。但是我们需要为 STM32 HAL 提供 8 位地址，因此我们将这个 7 位地址向左移动 1 位，`0x68<<1 = 0xD0`。如果AD0接入高电平，那么地址将会是`0x69`
 
 + 初始化mpu6050
-  
-  首先通过读取 `WHO_AM_I` （`0x75`）寄存器来检查传感器是否响应。如果传感器响应 `0x68`，则意味着通信正常
+  + 首先通过读取 `WHO_AM_I` （`0x75`）寄存器来检查传感器是否响应。如果传感器响应 `0x68`，则意味着通信正常
+    ![](mpu6050_4-1024x377.avif)
+  + 然后配置`PWR_MGMT_1 （0x6B）`”寄存器，我们将此 `register` 重置为 `0`。在此过程中，我们将：
+    + 选择 8 MHz 的内部 clock source。
+    + Temperature sensor （温度传感器） 将被启用。
+    + 将启用睡眠模式和唤醒模式之间的 CYCLE。
+    + SLEEP 模式将被禁用。
+    + 此外，我们不执行 RESET。
+    ![](mpu6050_5-1024x682.avif)
+  + 设置 数据输出率 or 采样率.这可以通过写入 `SMPLRT_DIV （0x19）` 寄存器来完成。此 register 指定陀螺仪输出速率的分频器，用于生成 MPU6050 的 `Sample Rate`。为了获得 1KHz 的采样率，我们将 `SMPLRT_DIV` 值设置为 7
+  ![](mpu6050_6-1024x377.avif)
+  + 修改 `GYRO_CONFIG （0x1B）`和 `ACCEL_CONFIG （0x1C）`寄存器来配置 `Accelerometer` 和 `Gyroscope` 寄存器，将 `0x00` 写入这两个寄存器将在 Register 中设置 ± 2g 的满量程范围，在 Register 中设置 ± 250 °/s 的满量程范围，并禁用自检
+    ![](mpu6050_7-1024x349.avif)
+    ![](mpu6050_8-1024x342.avif)
+
+  ```c
+  void MPU6050_Init(void) {
+    uint8_t check;
+    uint8_t data;
+    // 检查设备ID
+    HAL_I2C_Mem_Read(&hi2c1, 0x68 << 1, 0x75, 1, &check, 1, 1000);
+    if (check == 0x68) {
+        // 唤醒
+        data = 0;
+        HAL_I2C_Mem_Write(&hi2c1, 0x68 << 1, 0x6B, 1, &data, 1, 1000);
+        // 设置采样率
+        data = 0x07;
+        HAL_I2C_Mem_Write(&hi2c1, 0x68 << 1, 0x19, 1, &data, 1, 1000);
+        // 设置加速度计量程
+        data = 0x00;
+        HAL_I2C_Mem_Write(&hi2c1, 0x68 << 1, 0x1C, 1, &data, 1, 1000);
+        
+        // 设置陀螺仪量程
+        data = 0x00;
+        HAL_I2C_Mem_Write(&hi2c1, 0x68 << 1, 0x1B, 1, &data, 1, 1000);
+    }}
+  ```
++ 读取 MPU6050 数据
   ```c
 
   ```
-  
