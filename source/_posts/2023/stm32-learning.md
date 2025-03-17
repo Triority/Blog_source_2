@@ -75,7 +75,7 @@ http://dan.drown.org/stm32duino/package_STM32duino_index.json
 
 在`STM32 ST-LINK Utility`中，首先连接芯片`(Tarage -> connect或直接点击连接快捷按钮)`，然后打开`hex`文件`(也可以直接讲hex文件拖动到FLASH区域)`，最后就可以下载程序`(Taraget -> Program，也可以直接点击下载快捷按钮)`。弹出信息确认窗口，如hex文件路径、验证方式等，确认信息无误后点击`Start`开始下载程序，出现`Verification…OK`，说明下载成功。
 
-# 编程：在keil环境下
+# 在keil环境下编程(标准库)
 ## 新建工程
 首先选择开发板芯片，我的是`stm32f103c8`
 
@@ -524,7 +524,7 @@ TIM_SetCompare1(TIM2, Compare);
 如果需要查看变量的值需要打开`View > Watch Windows > watch 1`，即可输入变量名查看变量的实时值（注意必须是全局变量）
 
 
-# 使用cubemx自动配置
+# 使用cubemx自动配置寄存器(HAL库)
 ## 工程基本配置：以stm32f103c8t6为例
 + 设置外置时钟源和串口调试：
 ![](微信截图_20250313164315.png)
@@ -776,6 +776,8 @@ uint8_t rxData;
     例如16进制`0x10`和`0x18`对应二进制`10000`和`11000`，因此按照手册去掉后三位无效数字，前两位是二进制`10`和`11`，也就是10进制的`2`和`3`，也就是手册描述的两个设置选项
 
   ```c
+  void MPU6050_Init (void);
+
   void MPU6050_Init(void) {
     uint8_t check;
     uint8_t data;
@@ -802,7 +804,8 @@ uint8_t rxData;
   ![](mpu6050_11-1024x477.avif)
   根据手册给出的寄存器地址，传感器数据在`0x3B`到`0x48`之间，直接读取这一段内容，将每个参数的较高的 8 位向左移动，并和低 8 位的结果相加，得到完整的16位数据，然后根据选择的量程和分辨率转换成以`g`为单位的数值
   ```c
-  // 读取 MPU6050 数据
+  void MPU6050_Read(float *Ax,float *Ay,float *Az,float *Gx,float *Gy,float *Gz);
+  
   void MPU6050_Read(float *Ax,float *Ay,float *Az,float *Gx,float *Gy,float *Gz) {
       uint8_t data[14];
 
@@ -824,3 +827,25 @@ uint8_t rxData;
       *Gz = (float)Gyro_Z_RAW/16.4;
   }
   ```
+  调用这两个函数并串口发送就好了
+  ```c
+  MPU6050_Init();
+  float Data_mpu6050[6]={0.0,0.0,0.0,0.0};
+  
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    MPU6050_Read(&Data_mpu6050[0], &Data_mpu6050[1], &Data_mpu6050[2], &Data_mpu6050[3], &Data_mpu6050[4], &Data_mpu6050[5]);
+    sprintf (bufnum, "Ax=%07.4f\nAy=%07.4f\nAz=%07.4f\nGx=%07.1f\nGy=%07.1f\nGz=%07.1f\n", Data_mpu6050[0],Data_mpu6050[1],Data_mpu6050[2],Data_mpu6050[3],Data_mpu6050[4],Data_mpu6050[5]);
+    HAL_UART_Transmit(&huart1, bufnum, sizeof(bufnum) - 1, 1000);
+    
+    Delay_ms(100);
+    
+    
+    /* USER CODE END WHILE */
+  }
+  ```
+
