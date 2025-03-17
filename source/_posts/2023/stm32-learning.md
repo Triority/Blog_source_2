@@ -759,7 +759,7 @@ uint8_t rxData;
     ![](mpu6050_5-1024x682.avif)
   + 设置 数据输出率 or 采样率.这可以通过写入 `SMPLRT_DIV （0x19）` 寄存器来完成。此 register 指定陀螺仪输出速率的分频器，用于生成 MPU6050 的 `Sample Rate`。为了获得 1KHz 的采样率，我们将 `SMPLRT_DIV` 值设置为 7
   ![](mpu6050_6-1024x377.avif)
-  + 修改 `GYRO_CONFIG （0x1B）`和 `ACCEL_CONFIG （0x1C）`寄存器来配置 `Accelerometer` 和 `Gyroscope` 寄存器，将 `0x00` 写入这两个寄存器将在 Register 中设置 ± 2g 的满量程范围，在 Register 中设置 ± 250 °/s 的满量程范围，并禁用自检
+  + 修改 `GYRO_CONFIG （0x1B）`和 `ACCEL_CONFIG （0x1C）`寄存器来配置 `Accelerometer` 和 `Gyroscope` 寄存器，将 `0x18` 写入这两个寄存器将在 Register 中设置满量程范围，并禁用自检
     ![](mpu6050_7-1024x349.avif)
     ![](mpu6050_8-1024x342.avif)
     + 加速度计量程设置：
@@ -789,16 +789,38 @@ uint8_t rxData;
         data = 0x07;
         HAL_I2C_Mem_Write(&hi2c1, 0x68 << 1, 0x19, 1, &data, 1, 1000);
         // 设置加速度计量程
-        data = 0x00;
+        data = 0x18;
         HAL_I2C_Mem_Write(&hi2c1, 0x68 << 1, 0x1C, 1, &data, 1, 1000);
-        
         // 设置陀螺仪量程
-        data = 0x00;
+        data = 0x18;
         HAL_I2C_Mem_Write(&hi2c1, 0x68 << 1, 0x1B, 1, &data, 1, 1000);
     }}
   ```
 
 + 读取 MPU6050 数据
+  ![](mpu6050_10-1024x507.avif)
+  ![](mpu6050_11-1024x477.avif)
+  根据手册给出的寄存器地址，传感器数据在`0x3B`到`0x48`之间，直接读取这一段内容，将每个参数的较高的 8 位向左移动，并和低 8 位的结果相加，得到完整的16位数据，然后根据选择的量程和分辨率转换成以`g`为单位的数值
   ```c
+  // 读取 MPU6050 数据
+  void MPU6050_Read(float *Ax,float *Ay,float *Az,float *Gx,float *Gy,float *Gz) {
+      uint8_t data[14];
 
+      HAL_I2C_Mem_Read(&hi2c1, 0x68 << 1, 0x3B, 1, data, 14, 1000);
+
+      int16_t Accel_X_RAW = (data[0] << 8) | data[1];
+      int16_t Accel_Y_RAW = (data[2] << 8) | data[3];
+      int16_t Accel_Z_RAW = (data[4] << 8) | data[5];
+      int16_t Gyro_X_RAW = (data[8] << 8) | data[9];
+      int16_t Gyro_Y_RAW = (data[10] << 8) | data[11];
+      int16_t Gyro_Z_RAW = (data[12] << 8) | data[13];
+    
+      *Ax = (float)Accel_X_RAW/2048.0;
+      *Ay = (float)Accel_Y_RAW/2048.0;
+      *Az = (float)Accel_Z_RAW/2048.0;
+    
+      *Gx = (float)Gyro_X_RAW/16.4;
+      *Gy = (float)Gyro_Y_RAW/16.4;
+      *Gz = (float)Gyro_Z_RAW/16.4;
+  }
   ```
