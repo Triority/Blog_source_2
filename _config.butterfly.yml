@@ -53,31 +53,31 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: /img/d7534a8ee77467263a270461f030945.jpg
+index_img: https://api.aqcoder.cn/today
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: /img/d7534a8ee77467263a270461f030945.jpg
+default_top_img: https://api.aqcoder.cn/today
 
 # The banner image of archive page
-archive_img: /img/d7534a8ee77467263a270461f030945.jpg
+archive_img: https://api.aqcoder.cn/today
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
-tag_img: /img/d7534a8ee77467263a270461f030945.jpg
+tag_img: https://api.aqcoder.cn/today
 
 # The banner image of tag page
 # format:
 #  - tag name: xxxxx
-tag_per_img: /img/d7534a8ee77467263a270461f030945.jpg
+tag_per_img: https://api.aqcoder.cn/today
 
 # If the banner of category page not setting, it will show the top_img
 # note: category page, not categories page (子分類頁面的 top_img)
-category_img: /img/d7534a8ee77467263a270461f030945.jpg
+category_img: https://api.aqcoder.cn/today
 
 # The banner image of category page
 # format:
 #  - category name: xxxxx
-category_per_img: /img/d7534a8ee77467263a270461f030945.jpg
+category_per_img: https://api.aqcoder.cn/today
 
 cover:
   # display the cover or not (是否顯示文章封面)
