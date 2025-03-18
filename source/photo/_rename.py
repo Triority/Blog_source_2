@@ -1,7 +1,7 @@
 import os
 
 # 设置您的文件夹路径
-folder_path = '/hexo/source/photo/media/'
+folder_path = 'C:\\Blog_source\\source\\photo\\media\\'
 
 # 遍历文件夹中的所有文件
 for filename in os.listdir(folder_path):
