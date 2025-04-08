@@ -8,6 +8,15 @@ description: 这是一个相册不过也有可能作为朋友圈来发？
 {% endnote %}
 
 # 2025
+## 3.29：又双叒叕喇叭沟
+木星拍摄不是很理想，望远镜疑似光轴不准，分辨率跟两年前用时候相比很低
+{% gallery false,220,10 %}
+![](/photo/media/DSC1174.jpg)
+![](/photo/media/DSC1194.jpg)
+![](/photo/media/DSC1201.jpg)
+{% endgallery %}
+
+
 ## 3.9：天津
 {% gallery false,220,10 %}
 ![](/photo/media/DSC0785.jpg)
