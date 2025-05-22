@@ -200,8 +200,10 @@ LeGO-LOAM 通常由以下几个核心的 ROS 节点（或 Nodelet）组成，它
 </details>
 
 
+# VINS-Mono视觉slam实现
+数据集[The VIODE dataset](https://github.com/kminoda/VIODE/tree/master)
 
-
+视觉slam算法[VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono)
 
 
 
