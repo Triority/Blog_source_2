@@ -755,8 +755,8 @@ if __name__ == '__main__':
 
 ```
 
-| {% dplayer "url=0628.mp4" %} | ![](0628.png) | {% dplayer "url=0628_restored_epoch2_video.mp4" %} |  |
-|:---:|:---:|:---:|
+| {% dplayer "url=0628.mp4" %} | ![](0628.png) | {% dplayer "url=0628_restored_epoch2_video.mp4" %} | {% dplayer "url=xxx.mp4" %} |
+|:---:|:---:|:---:|:---:|
 | 水印视频 | 掩膜图片 | 训练2轮去水印效果 | 训练10轮去水印效果 |
 | <img width=2000/> | <img width=2000/> | <img width=2000/> | <img width=2000/> |
 
