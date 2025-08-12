@@ -760,5 +760,5 @@ if __name__ == '__main__':
 | 水印视频 | 掩膜图片 |
 | {% dplayer "url=RestoredEpoch2Video.mp4" %} | {% dplayer "url=xxx.mp4" %} |
 | 训练2轮去水印效果 | 训练10轮去水印效果 |
-| <img width=2000/> | <img width=2000/> | <img width=2000/> | <img width=2000/> |
+| <img width=2000/> | <img width=2000/> |
 
