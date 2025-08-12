@@ -685,7 +685,7 @@ def infer_video_4channel(config):
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     original_fps = cap.get(cv2.CAP_PROP_FPS)
 
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    fourcc = cv2.VideoWriter_fourcc(*'VP09')
     out_writer = cv2.VideoWriter(config["output_video_path"], fourcc, original_fps, target_size)
 
     hidden_state = None
@@ -756,7 +756,7 @@ if __name__ == '__main__':
 
 ```
 
-| {% dplayer "url=video0628.mp4" %} | ![](mask0628.png) |
+| {% dplayer "url=video_0628.mp4" %} | ![](mask0628.png) |
 |:---:|:---:|
 | 水印视频 | 掩膜图片 |
 | {% dplayer "url=restored_epoch6_video.mp4" %} | {% dplayer "url=xxx.mp4" %} |
