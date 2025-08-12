@@ -350,6 +350,7 @@ import torch.optim as optim
 import pathlib
 import torchvision
 import datetime
+from tqdm import tqdm
 
 
 class ConvBlock(nn.Module):
@@ -479,9 +480,6 @@ class RecurrentUNet(nn.Module):
 
 class VideoDataset(Dataset):
     def __init__(self, root_dir, sequence_length=10, transform=None, size=(480, 270)):
-        """
-        在初始化时增加了 size 参数，格式为 (width, height)
-        """
         self.root_dir = pathlib.Path(root_dir)
         self.clips_dir = self.root_dir / 'clips'
         self.mask_clips_dir = self.root_dir / 'mask_clips'
@@ -490,12 +488,13 @@ class VideoDataset(Dataset):
         self.clips_files = sorted([p for p in self.clips_dir.glob('*.mp4')])
         self.mask_clips_files = sorted([p for p in self.mask_clips_dir.glob('*.mp4')])
         self.mask_files = sorted([p for p in self.mask_dir.glob('*.png')])
-        assert len(self.clips_files) == len(self.mask_clips_files) == len(self.mask_files), "文件数量不匹配!"
+        assert len(self.clips_files) == len(self.mask_clips_files) == len(self.mask_files), "The number of dataset files does not match!"
 
         self.sequence_length = sequence_length
         self.transform = transform
-        self.target_size = size  # 格式: (width, height)
-        self.target_size_torch = (size[1], size[0])  # PyTorch resize 需要 (height, width)
+        # 输入格式(width, height)，PyTorch(height, width)
+        self.target_size = size
+        self.target_size_torch = (size[1], size[0])
 
     def __len__(self):
         return len(self.clips_files)
@@ -511,7 +510,7 @@ class VideoDataset(Dataset):
 
             if total_frames < num_frames:
                 cap.release()
-                raise ValueError(f"视频 {video_path} 帧数 ({total_frames}) 少于序列长度 ({num_frames})。")
+                raise ValueError(f"Video {video_path} : total_frames ({total_frames}) < num_frames ({num_frames})。")
 
             frames = []
             start_frame_index = 0
@@ -528,7 +527,7 @@ class VideoDataset(Dataset):
             cap.release()
 
             if len(frames) != num_frames:
-                raise ValueError(f"从视频 {video_path} 读取帧失败。")
+                raise ValueError(f"Read frame failed: {video_path}")
 
             return torch.stack(frames)
 
@@ -546,8 +545,6 @@ class VideoDataset(Dataset):
         mask_seq[mask_seq <= 0.5] = 0.0
         mask_seq = mask_seq.unsqueeze(0).repeat(self.sequence_length, 1, 1, 1)
         mask_seq = mask_seq[:, 0:1, :, :]
-
-        # 掩膜叠加至第四通道
         masked_seq = torch.cat((masked_seq, mask_seq), dim=1)
 
         if self.transform:
@@ -559,14 +556,16 @@ class VideoDataset(Dataset):
 if __name__ == '__main__':
     lr = 1e-4
     batch_size = 2
-    epochs = 10
+    epochs = 50
     sequence_len = 4
     size = (480, 270)
+    dataset_loader_workers = 4
 
     dataset_path = "D:\Dataset"
     # 继续训练时加载模型路径和已完成轮次，路径为空字符串则从零开始训练且设置的轮次无效
-    load_model_path = ""
-    load_model_epoch = 5
+    load_model_path = "model\epoch_7.pth"
+    load_model_epoch = 7
+
 
 
 
@@ -584,33 +583,35 @@ if __name__ == '__main__':
     num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f"Model has {num_params:,} trainable parameters.")
 
+    print("Preparing dataset...")
     train_dataset = VideoDataset(root_dir=dataset_path, sequence_length=sequence_len, size=size)
     train_loader = DataLoader(
         dataset=train_dataset,
         batch_size=batch_size,
         shuffle=True,
-        num_workers=4,
-        pin_memory=True)
+        num_workers=dataset_loader_workers,
+        pin_memory=False)
 
     print("Start training...")
     for epoch in range(load_model_epoch, epochs):
         model.train()
         total_loss = 0.0
+        with tqdm(total=len(train_loader), desc=f"Epoch {epoch + 1}/{epochs}", unit="batch") as pbar:
+            for batch_idx, (masked_seq, clips_seq, mask_seq) in enumerate(train_loader):
+                masked_seq = masked_seq.to(device)
+                clips_seq = clips_seq.to(device)
+                mask_seq = mask_seq.to(device)
 
-        for batch_idx, (masked_seq, clips_seq, mask_seq) in enumerate(train_loader):
-            masked_seq = masked_seq.to(device)
-            clips_seq = clips_seq.to(device)
-            mask_seq = mask_seq.to(device)
+                optimizer.zero_grad()
+                restored_seq, h_last = model(masked_seq)
 
-            optimizer.zero_grad()
-            restored_seq, h_last = model(masked_seq)
+                loss = criterion(restored_seq, clips_seq)
+                loss.backward()
+                optimizer.step()
+                total_loss += loss.item()
 
-            loss = criterion(restored_seq, clips_seq)
-            loss.backward()
-            optimizer.step()
-            total_loss += loss.item()
-            print(
-                f"{datetime.datetime.now():%H:%M:%S}: Epoch [{epoch + 1}/{epochs}], Batch [{batch_idx}/{len(train_loader)}], Loss: {loss.item():.4f}")
+                pbar.set_postfix(loss=f'{loss.item():.4f}')
+                pbar.update(1)
 
         avg_loss = total_loss / len(train_loader)
         print(f"--- {datetime.datetime.now():%H:%M:%S}: Epoch {epoch + 1} avg_loss: {avg_loss:.4f} ---")
@@ -621,7 +622,7 @@ if __name__ == '__main__':
 
 ```
 
-`infer.py`:有了训练的代码，这段程序就很容易了（懒得写了），以下内容由Google AI Studio生成，他还给我加了进度条哦。不要问为什么注释序号从2开始，因为第一部分被我整个删掉换成了`from train import RecurrentUNet`
+`infer.py`:有了训练的代码，这段程序就很容易了（懒得写了），以下内容由Google AI Studio生成。不要问为什么注释序号从2开始，因为第一部分被我整个删掉换成了`from train import RecurrentUNet`
 ```py
 import torch
 import torch.nn as nn
@@ -758,7 +759,7 @@ if __name__ == '__main__':
 | {% dplayer "url=video0628.mp4" %} | ![](mask0628.png) |
 |:---:|:---:|
 | 水印视频 | 掩膜图片 |
-| {% dplayer "url=RestoredEpoch2Video.mp4" %} | {% dplayer "url=xxx.mp4" %} |
-| 训练2轮去水印效果 | 训练10轮去水印效果 |
+| {% dplayer "url=restored_epoch6_video.mp4" %} | {% dplayer "url=xxx.mp4" %} |
+| 训练6轮去水印效果 | 训练10轮去水印效果 |
 | <img width=2000/> | <img width=2000/> |
 
