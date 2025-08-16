@@ -759,7 +759,96 @@ if __name__ == '__main__':
 | {% dplayer "url=video_0628.mp4" %} | ![](mask0628.png) |
 |:---:|:---:|
 | 水印视频 | 掩膜图片 |
-| {% dplayer "url=restored_epoch6_video.mp4" %} | {% dplayer "url=xxx.mp4" %} |
-| 训练6轮去水印效果 | 训练10轮去水印效果 |
+| {% dplayer "url=restored_epoch2_video.mp4" %} | {% dplayer "url=restored_epoch8_video.mp4" %} |
+| 训练2轮去水印效果 | 训练8轮去水印效果 |
 | <img width=2000/> | <img width=2000/> |
+
+此时去水印已经有一定效果，但是在纯色区域和动态区域出现了疑似像素值溢出的彩色条带状区域。
+
+{% dplayer "url=明显的白色溢出.mp4" %}
+
+考虑原因可能是网络最后一层是卷积层，输出的值没有范围限制，因此在后面追加了一个tanh层，现在RecurrentUNet类变成这样（只是在__init__和生成帧的两个位置改了两行）
+
+```py
+class RecurrentUNet(nn.Module):
+    def __init__(self, in_channels=3, out_channels=3, features=[64, 128, 256, 512]):
+        super(RecurrentUNet, self).__init__()
+
+        self.downs = nn.ModuleList()
+        self.ups = nn.ModuleList()
+        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
+
+        # 编码器
+        for feature in features:
+            self.downs.append(ConvBlock(in_channels, feature))
+            in_channels = feature
+
+        # ConvLSTM瓶颈
+        self.bottleneck_dim = features[-1]
+        self.conv_lstm = ConvLSTMCell(input_dim=self.bottleneck_dim,
+                                      hidden_dim=self.bottleneck_dim,
+                                      kernel_size=(3, 3), bias=True)
+
+        # 解码器
+        in_channels = features[-1]
+        for feature in reversed(features):
+            self.ups.append(nn.ConvTranspose2d(in_channels, feature, kernel_size=2, stride=2))
+            self.ups.append(ConvBlock(feature * 2, feature))
+            in_channels = feature
+
+        # 输出
+        self.final_conv = nn.Conv2d(features[0], out_channels, kernel_size=1)
+        self.tanh = nn.Tanh()
+
+    def forward(self, x, hidden_state=None):
+        # 视频片段x的期望形状:[batch_size, sequence_length, Channels, H, W]
+        batch_size, seq_len, _, H, W = x.shape
+        if hidden_state is None:
+            bottleneck_h, bottleneck_w = H // (2 ** (len(self.downs) - 1)), W // (2 ** (len(self.downs) - 1))
+            hidden_state = self.conv_lstm.init_hidden(batch_size, (bottleneck_h, bottleneck_w))
+        outputs = []
+
+        # 序列帧循环
+        for t in range(seq_len):
+            current_frame = x[:, t, :, :, :]
+            skip_connections_t = []
+
+            # 编码器
+            for i, down in enumerate(self.downs):
+                current_frame = down(current_frame)
+                skip_connections_t.append(current_frame)
+                if i < len(self.downs) - 1:
+                    current_frame = self.pool(current_frame)
+            # ConvLSTM
+            h, c = self.conv_lstm(input_tensor=current_frame, cur_state=hidden_state)
+            hidden_state = (h, c)
+            current_frame = h
+            # 反转跳跃连接列表
+            skip_connections_t = skip_connections_t[::-1]
+
+            # 解码器
+            for i in range(0, len(self.ups), 2):
+                current_frame = self.ups[i](current_frame)
+                skip_connection = skip_connections_t[i // 2]
+                # 如果池化导致奇数尺寸，上采样后的尺寸与跳跃连接不匹配，则强制修改尺寸
+                if current_frame.shape != skip_connection.shape:
+                    current_frame = nn.functional.interpolate(current_frame, size=skip_connection.shape[2:])
+                concat_skip = torch.cat((skip_connection, current_frame), dim=1)
+                current_frame = self.ups[i + 1](concat_skip)
+
+            # 生成帧
+            frame_output = self.tanh(self.final_conv(current_frame))
+            outputs.append(frame_output)
+
+        return torch.stack(outputs, dim=1), hidden_state
+```
+
+经过10轮的训练和测试，溢出问题得到解决：
+
+| {% dplayer "url=epoch5_14938_restored_video.mp4" %} | {% dplayer "url=epoch10_14938_restored_video.mp4" %} | {% dplayer "url=epoch10_0628_restored_video.mp4" %} |
+|:---:|:---:|:---:|
+| 训练5轮去水印效果 | 训练10轮去水印效果 | 与前面的测试作比较 |
+| <img width=2000/> | <img width=2000/> | <img width=2000/> |
+
+看起来训练轮次的增加效果不是那么明显，在继续训练的同时排查一下是不是激活函数导致的梯度消失问题
 
