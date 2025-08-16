@@ -845,7 +845,7 @@ class RecurrentUNet(nn.Module):
 
 经过10轮的训练和测试，溢出问题得到解决：
 
-| {% dplayer "url=epoch5_14938_restored_video.mp4" %} | {% dplayer "url=epoch10_14938_restored_video.mp4" %} | {% dplayer "url=epoch10_0628_restored_video.mp4" %} |
+| {% dplayer "url=epoch5_14938_restored_video.mp4 mutex=False" %} | {% dplayer "url=epoch10_14938_restored_video.mp4 mutex=False" %} | {% dplayer "url=epoch10_0628_restored_video.mp4" %} |
 |:---:|:---:|:---:|
 | 训练5轮去水印效果 | 训练10轮去水印效果 | 与前面的测试作比较 |
 | <img width=2000/> | <img width=2000/> | <img width=2000/> |
