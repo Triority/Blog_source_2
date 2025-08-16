@@ -327,8 +327,8 @@ class RecurrentUNet(nn.Module):
         return torch.stack(outputs, dim=1), hidden_state
 ```
 
-## 效果
-### RGB三维输入
+# 改进和效果记录
+## RGB三维输入
 让网络直接学习加了水印的视频，训练了五轮的效果如下（由于显存限制，图像降低分辨率到480*270之后给网络计算）
 
 | {% dplayer "url=b34be09f1bee268c4fc728776988c605.mp4" %} | {% dplayer "url=9a9d89aef96d5c03e600bdaa5e65f646.mp4" %} |
@@ -338,7 +338,7 @@ class RecurrentUNet(nn.Module):
 
 看起来网络已经学会了什么样的东西是文字水印并进行了一定处理。于是，为什么要让模型自己学习文字水印长啥样啊我明明有掩膜图片的，无人机视频也能用白色过滤选中水印区域啊，于是稍作修改，改成叠加了掩膜的四个通道输入
 
-### RGB+Mask四维输入
+## RGB+Mask四维输入
 `train.py`: 训练程序
 ```py
 import torch
@@ -763,6 +763,8 @@ if __name__ == '__main__':
 | 训练2轮去水印效果 | 训练8轮去水印效果 |
 | <img width=2000/> | <img width=2000/> |
 
+## 最后卷积层溢出
+
 此时去水印已经有一定效果，但是在纯色区域和动态区域出现了疑似像素值溢出的彩色条带状区域。
 
 {% dplayer "url=明显的白色溢出.mp4" %}
@@ -845,12 +847,72 @@ class RecurrentUNet(nn.Module):
 
 经过10轮的训练和测试，溢出问题得到解决：
 
-| {% dplayer "url=epoch5_14938_restored_video.mp4" "mutex=False" %} | {% dplayer "url=epoch10_14938_restored_video.mp4" "mutex=False" %} | {% dplayer "url=epoch10_0628_restored_video.mp4" %} |
+| {% dplayer "url=epoch5_14938_restored_video.mp4" %} | {% dplayer "url=epoch10_14938_restored_video.mp4" %} | {% dplayer "url=epoch10_0628_restored_video.mp4" %} |
 |:---:|:---:|:---:|
 | 训练5轮去水印效果 | 训练10轮去水印效果 | 与前面的测试作比较 |
 | <img width=2000/> | <img width=2000/> | <img width=2000/> |
 
 看起来训练轮次的增加效果不是那么明显，在继续训练的同时排查一下是不是激活函数导致的梯度消失问题。以及考虑是否是损失函数的缺陷，考虑增加对抗损失？
 
+## 梯度消失和可视化
+
+对于梯度消失问题，用TensorBoard进行参数可视化，检查梯度范数。
+
+```py
+from torch.utils.tensorboard import SummaryWriter
+
+writer = SummaryWriter('runs')
+
+for epoch in range(50):
+
+    # 记录梯度范数到TensorBoard，在backward()和step()之间
+    for name, param in model.named_parameters():
+        if param.grad is not None:
+            # 使用writer.add_scalar来记录，标签格式 'grads/层名' 可以在 TensorBoard 中分组
+            writer.add_scalar(f'grads/{name}_norm', param.grad.norm(2), epoch)
+    # 记录总的梯度范数，以监控梯度爆炸
+    total_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), float('inf'))
+    writer.add_scalar('grads/total_norm', total_norm, epoch)
+
+# 结束，关闭writer
+writer.close()
+```
+此时在终端输入启动命令即可在web查看具体图表
+```
+tensorboard --logdir=runs
+```
+
+得到的数据如下，发生梯度消失的可能性比较大，特别是ConvLSTM梯度已经到-7次的数量级，很有可能与此处使用的多个sigmoid和tanh激活函数有关。
+
+| ![](微信截图_20250816140036.png) | ![](微信截图_20250816140051.png) |
+|:---:|:---:|
+| <img width=2000/> | <img width=2000/> |
+
+考虑增加应该跳跃连接来让梯度传播跳过ConvLSTM层？
+
+```py
+            # ConvLSTM
+            h, c = self.conv_lstm(input_tensor=current_frame, cur_state=hidden_state)
+            hidden_state = (h, c)
+            #下一行为改动内容，原来是current_frame = h
+            current_frame = h + current_frame
+```
+
+反正先试一下，在10轮的基础上继续训练一轮
 
 
+| {% dplayer "url=epoch10_14938_restored_video.mp4" %} | {% dplayer "url=epoch11_14938_restored_video.mp4" %} |
+|:---:|:---:|:---:|
+| 原来10轮模型效果 | 改动后训练1轮也就是第11轮效果 |
+| <img width=2000/> | <img width=2000/> |
+
+效果不太明显，同时发生了图片整体的偏色，当然也不排除训练次数不够的原因，有待继续训练测试，下面是梯度图像
+
+| ![](信截图_20250816151838.png) | ![](信截图_20250816151901.png) |
+|:---:|:---:|
+| <img width=2000/> | <img width=2000/> |
+
+
+
+## 对抗损失函数
+对抗性损失源于生成对抗网络，
