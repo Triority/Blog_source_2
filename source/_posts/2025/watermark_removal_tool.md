@@ -902,7 +902,7 @@ tensorboard --logdir=runs
 
 
 | {% dplayer "url=epoch10_14938_restored_video.mp4" %} | {% dplayer "url=epoch11_14938_restored_video.mp4" %} |
-|:---:|:---:|:---:|
+|:---:|:---:|
 | 原来10轮模型效果 | 改动后训练1轮也就是第11轮效果 |
 | <img width=2000/> | <img width=2000/> |
 
